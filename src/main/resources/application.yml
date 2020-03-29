@@ -1,0 +1,22 @@
+# 不做端口配置时, 默认使用8080端口
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 5
+      idle-timeout: 600000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+  output:
+    ansi:
+      enabled: always
+
+# Spring boot actuator端点启用和暴露
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

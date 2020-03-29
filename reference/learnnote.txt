@@ -1,0 +1,2 @@
+http://localhost:8080/actuator/beans -- 查看所有springBean
+http://localhost:8080/actuator/health -- 查看服务是否健康

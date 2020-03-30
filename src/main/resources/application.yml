@@ -4,12 +4,26 @@ spring:
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
-    hikari:
-      maximum-pool-size: 5
-      minimum-idle: 5
-      idle-timeout: 600000
-      connection-timeout: 30000
-      max-lifetime: 1800000
+    password: n/z7PyA5cvcXvs8px8FVmBVpaRyNsvJb3X7YfS38DJrIg25EbZaZGvH4aHcnc97Om0islpCAPc3MqsGvsrxVJw==
+    druid:
+      initial-size: 5
+      max-active: 5
+      min-idle: 5
+      filters: conn, config, stat, slf4j
+      connection-properties: config.decrypt=true;config.decrypt.key=${public-key}
+      filter:
+        config:
+          enabled: true
+      test-on-borrow: false
+      test-while-idle: true
+      test-on-return: false
+
+  #    hikari:
+#      maximum-pool-size: 5
+#      minimum-idle: 5
+#      idle-timeout: 600000
+#      connection-timeout: 30000
+#      max-lifetime: 1800000
   output:
     ansi:
       enabled: always
@@ -20,3 +34,5 @@ management:
     web:
       exposure:
         include: "*"
+
+public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==

@@ -1,4 +1,4 @@
-package frog.learn.spring.demo.model;
+package frog.learn.spring.jdbcdemo.model;
 
 import lombok.Builder;
 import lombok.Data;

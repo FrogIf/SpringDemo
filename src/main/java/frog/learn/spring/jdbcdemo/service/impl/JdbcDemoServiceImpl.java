@@ -1,7 +1,7 @@
-package frog.learn.spring.demo.service.impl;
+package frog.learn.spring.jdbcdemo.service.impl;
 
-import frog.learn.spring.demo.dao.JdbcDemoDao;
-import frog.learn.spring.demo.service.JdbcDemoService;
+import frog.learn.spring.jdbcdemo.dao.JdbcDemoDao;
+import frog.learn.spring.jdbcdemo.service.JdbcDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

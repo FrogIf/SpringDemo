@@ -1,7 +1,7 @@
-package frog.learn.spring.demo.service.impl;
+package frog.learn.spring.jdbcdemo.service.impl;
 
-import frog.learn.spring.demo.exception.RollbackException;
-import frog.learn.spring.demo.service.TransactionDemoService;
+import frog.learn.spring.jdbcdemo.exception.RollbackException;
+import frog.learn.spring.jdbcdemo.service.TransactionDemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,7 +28,7 @@ public class TransactionDemoServiceImpl implements TransactionDemoService {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
                 try{
-                    jdbcTemplate.execute("insert into FOO(ID, BAR) values (99, 'aaa')");
+                    jdbcTemplate.execute("insert into T_FOO(ID, BAR) values (99, 'aaa')");
                     log.info("programmatic transaction running. count : {}", getCount());
                     transactionStatus.setRollbackOnly();    // 强制回滚
                 }catch (Exception e){
@@ -40,7 +40,7 @@ public class TransactionDemoServiceImpl implements TransactionDemoService {
     }
 
     private long getCount(){
-        return (long) jdbcTemplate.queryForList("select count(*) as C from FOO").get(0).get("C");
+        return (long) jdbcTemplate.queryForList("select count(*) as C from T_FOO").get(0).get("C");
 //        return jdbcTemplate.queryForObject("select count(*) from FOO", Long.class);
     }
 
@@ -49,13 +49,13 @@ public class TransactionDemoServiceImpl implements TransactionDemoService {
     @Transactional
     @Override
     public void insertRecord(){
-        jdbcTemplate.execute("insert into foo(bar) values('AAA')");
+        jdbcTemplate.execute("insert into T_FOO(bar) values('AAA')");
     }
 
     @Transactional(rollbackFor = RollbackException.class)
     @Override
     public void insertThenRollback() throws RollbackException {
-        jdbcTemplate.execute("insert into foo(bar) values('AAA')");
+        jdbcTemplate.execute("insert into T_FOO(bar) values('AAA')");
         throw new RollbackException();
     }
 

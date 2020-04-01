@@ -1,7 +1,7 @@
-package frog.learn.spring.demo.dao.impl;
+package frog.learn.spring.jdbcdemo.dao.impl;
 
-import frog.learn.spring.demo.dao.JdbcDemoDao;
-import frog.learn.spring.demo.model.FOO;
+import frog.learn.spring.jdbcdemo.dao.JdbcDemoDao;
+import frog.learn.spring.jdbcdemo.model.FOO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -37,7 +37,7 @@ public class JdbcDemoDaoImpl implements JdbcDemoDao {
     public void insertData(){
         // insert 方式1
         Arrays.asList("a", "b").forEach(bar -> {
-            jdbcTemplate.update("insert into FOO(bar) values (?)", bar);
+            jdbcTemplate.update("insert into T_FOO(bar) values (?)", bar);
         });
 
         // insert 方式2
@@ -50,14 +50,14 @@ public class JdbcDemoDaoImpl implements JdbcDemoDao {
     @Override
     public void listData(){
         // queryForObject
-        log.info("Count : {}", jdbcTemplate.queryForObject("select count(*) from FOO", Long.class));
+        log.info("Count : {}", jdbcTemplate.queryForObject("select count(*) from T_FOO", Long.class));
 
         // queryForList
-        List<String> list = jdbcTemplate.queryForList("select bar from FOO", String.class);
+        List<String> list = jdbcTemplate.queryForList("select bar from T_FOO", String.class);
         list.forEach(s -> log.info(s));
 
         // query
-        List<FOO> foos = jdbcTemplate.query("select * from FOO", new RowMapper<FOO>() {
+        List<FOO> foos = jdbcTemplate.query("select * from T_FOO", new RowMapper<FOO>() {
             @Override
             public FOO mapRow(ResultSet resultSet, int i) throws SQLException {
                 return FOO.builder().id(resultSet.getLong(1)).bar(resultSet.getString(2)).build();
@@ -70,7 +70,7 @@ public class JdbcDemoDaoImpl implements JdbcDemoDao {
     @Override
     public void batchInsertDemo() {
         // 批量插入方式1
-        jdbcTemplate.batchUpdate("insert into FOO(bar) values (?)", new BatchPreparedStatementSetter() {
+        jdbcTemplate.batchUpdate("insert into T_FOO(bar) values (?)", new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
                 preparedStatement.setString(1, "b-" + i);
@@ -86,7 +86,7 @@ public class JdbcDemoDaoImpl implements JdbcDemoDao {
         List<FOO> list = new ArrayList<>();
         list.add(FOO.builder().id(100L).bar("b-100").build());
         list.add(FOO.builder().id(101L).bar("b-101").build());
-        namedParameterJdbcTemplate.batchUpdate("insert into FOO(ID, BAR) values (:id, :bar)", SqlParameterSourceUtils.createBatch(list));
+        namedParameterJdbcTemplate.batchUpdate("insert into T_FOO(ID, BAR) values (:id, :bar)", SqlParameterSourceUtils.createBatch(list));
     }
 
 }

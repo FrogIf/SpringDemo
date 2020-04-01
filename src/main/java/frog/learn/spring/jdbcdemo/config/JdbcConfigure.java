@@ -1,4 +1,4 @@
-package frog.learn.spring;
+package frog.learn.spring.jdbcdemo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ public class JdbcConfigure {
     @Autowired
     @Bean
     public SimpleJdbcInsert simpleJdbcInsert(JdbcTemplate jdbcTemplate){
-        return new SimpleJdbcInsert(jdbcTemplate).withTableName("FOO").usingGeneratedKeyColumns("ID");
+        return new SimpleJdbcInsert(jdbcTemplate).withTableName("T_FOO").usingGeneratedKeyColumns("ID");
     }
 
 }

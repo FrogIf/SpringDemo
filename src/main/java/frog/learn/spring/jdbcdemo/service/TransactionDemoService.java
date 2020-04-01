@@ -1,6 +1,6 @@
-package frog.learn.spring.demo.service;
+package frog.learn.spring.jdbcdemo.service;
 
-import frog.learn.spring.demo.exception.RollbackException;
+import frog.learn.spring.jdbcdemo.exception.RollbackException;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface TransactionDemoService {

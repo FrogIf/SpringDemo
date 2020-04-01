@@ -1,4 +1,4 @@
-package frog.learn.spring.demo.service;
+package frog.learn.spring.jdbcdemo.service;
 
 public interface JdbcDemoService {
     void insertDataDemo();

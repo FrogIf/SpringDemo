@@ -1,4 +1,4 @@
-package frog.learn.spring.demo.dao;
+package frog.learn.spring.jdbcdemo.dao;
 
 public interface JdbcDemoDao {
     void insertData();

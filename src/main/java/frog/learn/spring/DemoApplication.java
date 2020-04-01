@@ -28,7 +28,7 @@ public class DemoApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         showConnection();
-        showData();
+//        showData();
     }
 
     private void showConnection() throws SQLException {
@@ -38,9 +38,9 @@ public class DemoApplication implements CommandLineRunner {
         conn.close();
     }
 
-    private void showData(){
-        jdbcTemplate.queryForList("select * from FOO").forEach(row -> log.info(row.toString()));
-    }
+//    private void showData(){
+//        jdbcTemplate.queryForList("select * from FOO").forEach(row -> log.info(row.toString()));
+//    }
 
 
 }

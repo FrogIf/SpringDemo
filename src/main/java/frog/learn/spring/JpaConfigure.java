@@ -1,4 +1,4 @@
-package frog.learn.spring.jpademo.config;
+package frog.learn.spring;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

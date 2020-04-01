@@ -1,4 +1,4 @@
-package frog.learn.spring.jdbcdemo.config;
+package frog.learn.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

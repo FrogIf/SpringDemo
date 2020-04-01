@@ -15,6 +15,7 @@ public class JpaContoller {
     @RequestMapping("orderdemo")
     public String jpaDemo(){
         coffeeOrderService.initOrders();
+        coffeeOrderService.findOrders();
         return "success";
     }
 

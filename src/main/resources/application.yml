@@ -16,7 +16,8 @@ spring:
       test-on-borrow: false
       test-while-idle: true
       test-on-return: false
-#    hikari:
+      validation-query: SELECT 1
+  #    hikari:
 #      maximum-pool-size: 5
 #      minimum-idle: 5
 #      idle-timeout: 600000

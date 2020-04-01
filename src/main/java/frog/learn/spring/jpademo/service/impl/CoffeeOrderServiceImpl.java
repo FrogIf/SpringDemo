@@ -10,12 +10,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -67,6 +70,22 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
 
     @Override
     public void findOrders() {
+        coffeeRepository.findAll(Sort.by(Sort.Direction.DESC, "id"))
+                .forEach(c -> log.info("coffee : {}", c));
 
+        List<CoffeeOrder> top3Orders = coffeeOrderRepository.findTop3ByOrderByUpdateTimeDescIdAsc();
+        log.info("findTop3ByOrderByUpdateTimeDescIdAsc: {}", getJoinedOrderId(top3Orders));
+
+        top3Orders.forEach(o -> {
+            log.info("Order : {}", o.getId());
+            o.getItems().forEach(i -> log.info("item:{}", i));
+        });
+
+        List<CoffeeOrder> latte = coffeeOrderRepository.findByItems_Name("latte");
+        log.info("findByItems_Name : {}", getJoinedOrderId(latte));
+    }
+
+    private String getJoinedOrderId(List<CoffeeOrder> list){
+        return list.stream().map(o -> o.getId().toString()).collect(Collectors.joining(","));
     }
 }

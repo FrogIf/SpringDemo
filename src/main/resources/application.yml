@@ -41,5 +41,14 @@ management:
       exposure:
         include: "*"
 
+
 # 数据库加密秘钥
 public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==
+
+
+# mybatis
+mybatis:
+  type-handlers-package: frog.learn.spring.mybatisdemo.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: frog.learn.spring.**.mapper

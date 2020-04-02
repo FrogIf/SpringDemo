@@ -1,4 +1,4 @@
-package frog.learn.spring.mybatisdemo.model;
+package frog.learn.spring.mybatis.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

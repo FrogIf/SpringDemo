@@ -1,7 +1,7 @@
-package frog.learn.spring.mybatisdemo.controller;
+package frog.learn.spring.mybatis.common.controller;
 
-import frog.learn.spring.mybatisdemo.model.MCoffee;
-import frog.learn.spring.mybatisdemo.service.MCoffeeService;
+import frog.learn.spring.mybatis.common.model.MCoffee;
+import frog.learn.spring.mybatis.common.service.MCoffeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
@@ -16,7 +16,6 @@ public class MaybatisDemoController {
 
     @Autowired
     private MCoffeeService mCoffeeService;
-
 
     @RequestMapping("demo")
     public String demo(){

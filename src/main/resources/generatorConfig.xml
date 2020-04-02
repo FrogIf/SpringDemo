@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="H2Tables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+
+        <!--配置数据库连接-->
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:mem:testdb"
+                        userId="sa"
+                        password="">
+        </jdbcConnection>
+
+        <!--配置model对象生成路径-->
+        <javaModelGenerator targetPackage="frog.learn.spring.mybatis.gen.model"
+                            targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--配置mapper xml文件生成路径-->
+        <sqlMapGenerator targetPackage="gcoffee"
+                         targetProject="./src/main/resources/mapper">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--方法与sql之间映射, 这里使用mixedmapper, 指示使用注解和xml两种方式进行映射-->
+        <javaClientGenerator type="MIXEDMAPPER"
+                             targetPackage="frog.learn.spring.mybatis.gen.mapper"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="t_gcoffee" domainObjectName="GCoffee" >
+            <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />
+            <columnOverride column="price" javaType="org.joda.money.Money" jdbcType="BIGINT"
+                            typeHandler="frog.learn.spring.mybatis.common.typehandler.MoneyTypeHandler"/>
+        </table>
+    </context>
+</generatorConfiguration>

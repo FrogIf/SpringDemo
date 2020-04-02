@@ -3,13 +3,13 @@ spring:
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
-    password: n/z7PyA5cvcXvs8px8FVmBVpaRyNsvJb3X7YfS38DJrIg25EbZaZGvH4aHcnc97Om0islpCAPc3MqsGvsrxVJw==
+#    password: n/z7PyA5cvcXvs8px8FVmBVpaRyNsvJb3X7YfS38DJrIg25EbZaZGvH4aHcnc97Om0islpCAPc3MqsGvsrxVJw==
     druid:
       initial-size: 5
       max-active: 5
       min-idle: 5
       filters: conn, config, stat, slf4j
-      connection-properties: config.decrypt=true;config.decrypt.key=${public-key}
+#      connection-properties: config.decrypt=true;config.decrypt.key=${public-key}
       filter:
         config:
           enabled: true
@@ -43,12 +43,13 @@ management:
 
 
 # 数据库加密秘钥
-public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==
+# public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==
 
 
 # mybatis
 mybatis:
-  type-handlers-package: frog.learn.spring.mybatisdemo.typehandler
+  type-handlers-package: frog.learn.spring.mybatis.common.typehandler
   configuration:
     map-underscore-to-camel-case: true
-  type-aliases-package: frog.learn.spring.**.mapper
+  type-aliases-package: frog.learn.spring.**.model
+  mapper-locations: classpath*:/mapper/**/*.xml

@@ -8,3 +8,12 @@ create table t_mcoffee(
     update_time timestamp,
     primary key(ID)
 );
+
+create table t_gcoffee(
+    ID BIGINT not null auto_increment,
+    name varchar(100),
+    price bigint not null,
+    create_time timestamp,
+    update_time timestamp,
+    primary key(ID)
+);

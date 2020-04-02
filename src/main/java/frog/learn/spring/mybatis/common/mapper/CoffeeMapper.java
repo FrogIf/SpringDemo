@@ -1,9 +1,9 @@
-package frog.learn.spring.mybatisdemo.mapper;
+package frog.learn.spring.mybatis.common.mapper;
 
-import frog.learn.spring.mybatisdemo.model.MCoffee;
+import frog.learn.spring.mybatis.common.model.MCoffee;
 import org.apache.ibatis.annotations.*;
 
-@Mapper
+//@Mapper
 public interface CoffeeMapper {
 
     @Insert("insert into t_mcoffee(name, price, create_time, update_time) values(#{name}, #{price}, now(), now())")

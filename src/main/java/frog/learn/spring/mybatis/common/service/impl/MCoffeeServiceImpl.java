@@ -1,8 +1,8 @@
-package frog.learn.spring.mybatisdemo.service.impl;
+package frog.learn.spring.mybatis.common.service.impl;
 
-import frog.learn.spring.mybatisdemo.mapper.CoffeeMapper;
-import frog.learn.spring.mybatisdemo.model.MCoffee;
-import frog.learn.spring.mybatisdemo.service.MCoffeeService;
+import frog.learn.spring.mybatis.common.mapper.CoffeeMapper;
+import frog.learn.spring.mybatis.common.model.MCoffee;
+import frog.learn.spring.mybatis.common.service.MCoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

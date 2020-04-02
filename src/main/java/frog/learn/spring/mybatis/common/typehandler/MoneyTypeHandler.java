@@ -1,4 +1,4 @@
-package frog.learn.spring.mybatisdemo.typehandler;
+package frog.learn.spring.mybatis.common.typehandler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
@@ -10,6 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/**
+ * mybatis类型映射
+ * 将Money映射为数据库中的bigint(即long)
+ */
 public class MoneyTypeHandler extends BaseTypeHandler<Money> {
 
     /**
@@ -17,7 +22,7 @@ public class MoneyTypeHandler extends BaseTypeHandler<Money> {
      */
     @Override
     public void setNonNullParameter(PreparedStatement preparedStatement, int columnIndex, Money money, JdbcType jdbcType) throws SQLException {
-        preparedStatement.setLong(columnIndex, money.getAmountMajorLong());
+        preparedStatement.setLong(columnIndex, money.getAmountMinorLong());
     }
 
     /**

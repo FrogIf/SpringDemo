@@ -1,11 +1,11 @@
 package frog.learn.spring;
 
+import frog.learn.spring.mybatis.gen.MybatisGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -22,13 +22,10 @@ public class DemoApplication implements CommandLineRunner {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
     @Override
     public void run(String... args) throws Exception {
         showConnection();
-//        showData();
+//        MybatisGenerator.generate();    // 使用generator, 应用数据库表生成mybatis相关文件
     }
 
     private void showConnection() throws SQLException {
@@ -37,10 +34,5 @@ public class DemoApplication implements CommandLineRunner {
         log.info(conn.toString());
         conn.close();
     }
-
-//    private void showData(){
-//        jdbcTemplate.queryForList("select * from FOO").forEach(row -> log.info(row.toString()));
-//    }
-
 
 }

@@ -51,5 +51,11 @@ mybatis:
   type-handlers-package: frog.learn.spring.mybatis.common.typehandler
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: frog.learn.spring.**.model
   mapper-locations: classpath*:/mapper/**/*.xml
+pagehelper:
+  page-size-zero: true  #如果pageSize传入的是0, 则查询全部
+  offset-as-page-num: true # 指示pageNum参数表示的页码, 而不是记录的offset
+  reasonable: true  # 如果pageNum小于0时自动处理
+  support-methods-arguments: true # 方法参数支持

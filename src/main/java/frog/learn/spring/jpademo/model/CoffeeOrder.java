@@ -25,6 +25,6 @@ public class CoffeeOrder extends BaseEntity implements Serializable {
 
     @Enumerated
     @Column(nullable = false)
-    private OrderState orderState;
+    private OrderState state;
 
 }

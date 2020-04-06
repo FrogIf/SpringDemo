@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +30,35 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
 
     @Autowired
     private CoffeeRepository coffeeRepository;
+
+
+    @Override
+    public CoffeeOrder createOrder(String customer, Coffee... coffees){
+        CoffeeOrder order = CoffeeOrder.builder().customer(customer)
+                .items(new ArrayList<>(Arrays.asList(coffees))) // 必须再包一层, Arrays.asList生成的是不可编辑的List, 再updateOrder时, 会调用remove方法, 导致异常
+                .state(OrderState.INIT)
+                .build();
+        CoffeeOrder save = coffeeOrderRepository.save(order);
+        log.info("new order : {}", save);
+        return save;
+    }
+
+    @Override
+    public boolean updateState(CoffeeOrder order, OrderState state){
+        if(state.compareTo(order.getState()) <= 0){
+            log.warn("Wrong State order : {}, {}", state, order.getState());
+            return false;
+        }
+        order.setState(state);
+        coffeeOrderRepository.save(order);
+        log.info("Update Order : {}", order);
+        return true;
+    }
+
+    @Override
+    public List<CoffeeOrder> findAllByCustomer(String customer) {
+        return coffeeOrderRepository.findByCustomerOrderById(customer);
+    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -53,14 +83,14 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
         CoffeeOrder orderA = CoffeeOrder.builder()
                 .customer("frog")
                 .items(Collections.singletonList(espresso))
-                .orderState(OrderState.INIT)
+                .state(OrderState.INIT)
                 .build();
         log.info("order : {}", orderA);
 
         CoffeeOrder orderB = CoffeeOrder.builder()
                 .customer("snail")
                 .items(Arrays.asList(espresso, latte))
-                .orderState(OrderState.INIT)
+                .state(OrderState.INIT)
                 .build();
         log.info("order : {}", orderB);
 

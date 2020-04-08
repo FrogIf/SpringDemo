@@ -9,6 +9,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,6 +26,11 @@ public class CoffeeServiceImpl implements CoffeeService {
         Optional<Coffee> coffee = coffeeRepository.findOne(Example.of(Coffee.builder().name(name).build(), matcher));
         log.info("Coffee Found : {}", coffee);
         return coffee;
+    }
+
+    @Override
+    public List<Coffee> findAll() {
+        return coffeeRepository.findAll();
     }
 
 }

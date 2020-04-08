@@ -2,6 +2,7 @@ package frog.learn.spring.jpademo.service;
 
 import frog.learn.spring.jpademo.model.Coffee;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CoffeeService {
@@ -12,4 +13,6 @@ public interface CoffeeService {
      * @return 查询结果
      */
     Optional<Coffee> findOneCoffee(String name);
+
+    List<Coffee> findAll();
 }

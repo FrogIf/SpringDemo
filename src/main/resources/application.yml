@@ -62,3 +62,11 @@ pagehelper:
   offset-as-page-num: true # 指示pageNum参数表示的页码, 而不是记录的offset
   reasonable: true  # 如果pageNum小于0时自动处理
   support-methods-arguments: true # 方法参数支持
+
+
+redis:
+  host: 192.168.99.100
+  maxTotal: 5
+  maxIdle: 5
+  testOnBorrow : true
+

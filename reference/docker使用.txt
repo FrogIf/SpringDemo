@@ -11,3 +11,10 @@ mongo -u admin -p admin
 创建mongo库
 use springbucks;
 db.createUser({user:"springbucks", pwd:"springbucks", roles:[{role:"readWrite", db:"springbucks"}]})
+
+
+获取redis
+docker pull redis
+
+启动redis
+docker run --name redis -d -p 6379:6379 redis

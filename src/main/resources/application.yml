@@ -17,7 +17,7 @@ spring:
       test-while-idle: true
       test-on-return: false
       validation-query: SELECT 1
-  #    hikari:
+#    hikari:
 #      maximum-pool-size: 5
 #      minimum-idle: 5
 #      idle-timeout: 600000
@@ -33,6 +33,9 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+  data:
+    mongodb:
+      uri: mongodb://springbucks:springbucks@192.168.99.100:27017/springbucks
 
 # Spring boot actuator端点启用和暴露
 management:

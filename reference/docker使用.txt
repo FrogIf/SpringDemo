@@ -1,0 +1,13 @@
+获取mongodb
+docker pull mongo
+
+启动mongoDB
+docker run --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin -d mongo
+
+连接mongo
+docker exec -it mongo bash
+mongo -u admin -p admin
+
+创建mongo库
+use springbucks;
+db.createUser({user:"springbucks", pwd:"springbucks", roles:[{role:"readWrite", db:"springbucks"}]})

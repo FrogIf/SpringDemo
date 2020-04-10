@@ -1,6 +1,5 @@
-package frog.learn.spring.jedis;
+package frog.learn.spring.redis;
 
-import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.service.CoffeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;
@@ -16,7 +15,6 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import java.util.List;
 import java.util.Map;
 
 @Configuration

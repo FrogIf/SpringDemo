@@ -39,4 +39,23 @@ public class BucksController {
         return coffeeOrderService.findAllByCustomer(customer);
     }
 
+    @RequestMapping("cachetest")
+    public List<Coffee> cacheTest(){
+        log.info("size : {}", coffeeService.findAll().size());
+        for (int i = 0; i < 10; i++){
+            log.info("load from cache.");
+            coffeeService.findAll();
+        }
+
+        try {
+            Thread.sleep(5000L);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage(), e);
+        }
+
+        log.info("5 seconds, auto invalid cache.");
+
+        return coffeeService.findAll();
+    }
+
 }

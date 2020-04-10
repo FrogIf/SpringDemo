@@ -15,4 +15,6 @@ public interface CoffeeService {
     Optional<Coffee> findOneCoffee(String name);
 
     List<Coffee> findAll();
+
+    void reloadCoffee();
 }

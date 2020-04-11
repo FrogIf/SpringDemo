@@ -48,7 +48,7 @@ public class MongoDemoController {
         Thread.sleep(1000);
 
         UpdateResult updateResult = mongoTemplate.updateFirst(Query.query(Criteria.where("name").is("espresso")),
-                new Update().set("price", Money.ofMajor(CurrencyUnit.of("CNY"), 30)).currentDate("updateTime"), MongoCoffee.class);
+                new Update().set("price", Money.ofMinor(CurrencyUnit.of("CNY"), 30)).currentDate("updateTime"), MongoCoffee.class);
 
         log.info("update result : {}", updateResult.getModifiedCount());
         MongoCoffee mc = mongoTemplate.findById(coffee.getId(), MongoCoffee.class);

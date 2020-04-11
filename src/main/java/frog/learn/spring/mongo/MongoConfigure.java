@@ -1,6 +1,7 @@
 package frog.learn.spring.mongo;
 
 import frog.learn.spring.mongo.converter.MoneyReadConverter;
+import frog.learn.spring.mongo.converter.MoneyWriteConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
@@ -14,7 +15,7 @@ public class MongoConfigure {
 
     @Bean
     public MongoCustomConversions mongoCustomConversions(){
-        return new MongoCustomConversions(Arrays.asList(new MoneyReadConverter()));
+        return new MongoCustomConversions(Arrays.asList(new MoneyWriteConverter(), new MoneyReadConverter()));
     }
 
 }

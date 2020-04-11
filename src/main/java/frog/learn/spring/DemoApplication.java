@@ -1,5 +1,7 @@
 package frog.learn.spring;
 
+import frog.learn.spring.reactor.RedisReactorDemo;
+import frog.learn.spring.reactor.SimpleMongoReactorDemo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,9 +23,22 @@ public class DemoApplication implements CommandLineRunner {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private RedisReactorDemo redisReactorDemo;
+
+    @Autowired
+    private SimpleMongoReactorDemo simpleMongoReactorDemo;
+
+    /**
+     * spring boot程序启动后执行
+     * @param args 输入参数
+     * @throws Exception 异常
+     */
     @Override
     public void run(String... args) throws Exception {
         showConnection();
+//        simpleMongoReactorDemo.testDemo();  // mongo simple reactor demo
+//        redisReactorDemo.run(); // redis simple reactor demo
 //        MybatisGenerator.generate();    // 使用generator, 应用数据库表生成mybatis相关文件
     }
 

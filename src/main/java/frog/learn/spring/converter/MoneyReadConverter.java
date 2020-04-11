@@ -1,4 +1,4 @@
-package frog.learn.spring.mongo.converter;
+package frog.learn.spring.converter;
 
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;

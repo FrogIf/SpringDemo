@@ -1,7 +1,5 @@
 # 不做端口配置时, 默认使用8080端口
 spring:
-  main:
-    allow-bean-definition-overriding: true
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
@@ -52,13 +50,13 @@ spring:
         max-active: 5
         max-idle: 5
 
+
 # Spring boot actuator端点启用和暴露
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-
 
 # 数据库加密秘钥
 # public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==

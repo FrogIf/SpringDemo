@@ -45,7 +45,7 @@ public class R2DBCSimpleController {
         return "success";
     }
     
-    @Autowired
+//    @Autowired
     private R2DBCCoffeeRepository r2DBCCoffeeRepository;
 
     /**

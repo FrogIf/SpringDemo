@@ -2,12 +2,15 @@ package frog.learn.spring;
 
 import frog.learn.spring.converter.MoneyReadConverter;
 import frog.learn.spring.converter.MoneyWriteConverter;
+import frog.learn.spring.reactor.anno.R2DBCRepository;
 import io.r2dbc.h2.H2ConnectionConfiguration;
 import io.r2dbc.h2.H2ConnectionFactory;
 import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.data.convert.CustomConversions;
 import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
 import org.springframework.data.r2dbc.dialect.Dialect;
@@ -17,7 +20,9 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import java.util.Arrays;
 
 @Configuration
-@EnableR2dbcRepositories
+@EnableR2dbcRepositories(
+        includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = R2DBCRepository.class)
+)
 public class R2DBCConfigure extends AbstractR2dbcConfiguration {
 
     @Value(value = "${spring.datasource.username}")

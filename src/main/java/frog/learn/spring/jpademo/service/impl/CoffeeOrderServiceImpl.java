@@ -1,5 +1,6 @@
 package frog.learn.spring.jpademo.service.impl;
 
+import frog.learn.spring.constant.CommonConstant;
 import frog.learn.spring.jpademo.dao.CoffeeOrderRepository;
 import frog.learn.spring.jpademo.dao.CoffeeRepository;
 import frog.learn.spring.jpademo.model.Coffee;
@@ -66,13 +67,13 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
         // 创建coffee
         Coffee latte = Coffee.builder()
                 .name("latte")
-                .price(Money.of(CurrencyUnit.of("CNY"), 30.0))
+                .price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 30.0))
                 .build();
         log.info("coffee : {}", latte);
 
         Coffee espresso = Coffee.builder()
                 .name("espresso")
-                .price(Money.of(CurrencyUnit.of("CNY"), 20.0))
+                .price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 20.0))
                 .build();
         log.info("coffee : {}", espresso);
 

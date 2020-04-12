@@ -1,5 +1,6 @@
 package frog.learn.spring.mybatis.common.typehandler;
 
+import frog.learn.spring.constant.CommonConstant;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.joda.money.CurrencyUnit;
@@ -50,6 +51,6 @@ public class MoneyTypeHandler extends BaseTypeHandler<Money> {
     }
 
     private Money parseMoney(Long value){
-        return Money.of(CurrencyUnit.of("CNY"), value / 100.0);
+        return Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), value / 100.0);
     }
 }

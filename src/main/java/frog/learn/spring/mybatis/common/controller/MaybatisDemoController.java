@@ -1,6 +1,7 @@
 package frog.learn.spring.mybatis.common.controller;
 
 import com.github.pagehelper.PageInfo;
+import frog.learn.spring.constant.CommonConstant;
 import frog.learn.spring.mybatis.common.model.MCoffee;
 import frog.learn.spring.mybatis.common.service.MCoffeeService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ public class MaybatisDemoController {
 
     @RequestMapping("demo")
     public String demo(){
-        MCoffee mCoffee = MCoffee.builder().name("latte").price(Money.of(CurrencyUnit.of("CNY"), 10)).build();
+        MCoffee mCoffee = MCoffee.builder().name("latte").price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 10)).build();
         mCoffeeService.save(mCoffee);
         log.info("coffee : {}", mCoffee);
         MCoffee qCoffee = mCoffeeService.queryById(mCoffee.getId());

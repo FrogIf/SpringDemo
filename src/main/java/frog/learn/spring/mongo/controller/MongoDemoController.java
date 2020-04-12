@@ -1,6 +1,7 @@
 package frog.learn.spring.mongo.controller;
 
 import com.mongodb.client.result.UpdateResult;
+import frog.learn.spring.constant.CommonConstant;
 import frog.learn.spring.mongo.model.MongoCoffee;
 import frog.learn.spring.mongo.repository.MongoCoffeeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ public class MongoDemoController {
     public String demo() throws InterruptedException {
         MongoCoffee coffee = MongoCoffee.builder()
                 .name("espresso")
-                .price(Money.of(CurrencyUnit.of("CNY"), 20.0))
+                .price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 20.0))
                 .createTime(new Date())
                 .updateTime(new Date()).build();
         MongoCoffee mongoCoffee = mongoTemplate.save(coffee);
@@ -48,7 +49,7 @@ public class MongoDemoController {
         Thread.sleep(1000);
 
         UpdateResult updateResult = mongoTemplate.updateFirst(Query.query(Criteria.where("name").is("espresso")),
-                new Update().set("price", Money.ofMinor(CurrencyUnit.of("CNY"), 30)).currentDate("updateTime"), MongoCoffee.class);
+                new Update().set("price", Money.ofMinor(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 30)).currentDate("updateTime"), MongoCoffee.class);
 
         log.info("update result : {}", updateResult.getModifiedCount());
         MongoCoffee mc = mongoTemplate.findById(coffee.getId(), MongoCoffee.class);
@@ -63,20 +64,20 @@ public class MongoDemoController {
     public List<MongoCoffee> demoRepository(){
         MongoCoffee espresso = MongoCoffee.builder()
                 .name("espresso")
-                .price(Money.of(CurrencyUnit.of("CNY"), 20.0))
+                .price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 20.0))
                 .createTime(new Date())
                 .updateTime(new Date()).build();
 
         MongoCoffee latte = MongoCoffee.builder()
                 .name("latte")
-                .price(Money.of(CurrencyUnit.of("CNY"), 30.0))
+                .price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 30.0))
                 .createTime(new Date())
                 .updateTime(new Date())
                 .build();
 
         mongoCoffeeRepository.insert(Arrays.asList(espresso, latte));
 
-        latte.setPrice(Money.of(CurrencyUnit.of("CNY"), 25.0));
+        latte.setPrice(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 25.0));
         latte.setUpdateTime(new Date());
 
         mongoCoffeeRepository.save(latte);

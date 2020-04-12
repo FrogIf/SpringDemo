@@ -1,5 +1,6 @@
 package frog.learn.spring.redis;
 
+import frog.learn.spring.constant.CommonConstant;
 import frog.learn.spring.jpademo.service.CoffeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;
@@ -59,7 +60,7 @@ public class SimpleJedisController {
             log.info("menu : {}", menu);
 
             String price = jedis.hget("springbucks-menu", "espresso");
-            log.info("price : {}", Money.ofMinor(CurrencyUnit.of("CNY"), Long.parseLong(price)));
+            log.info("price : {}", Money.ofMinor(CurrencyUnit.of(CommonConstant.MONEY_UNIT), Long.parseLong(price)));
         }
 
         return "successs";

@@ -1,5 +1,6 @@
 package frog.learn.spring.mybatis.gen.service.impl;
 
+import frog.learn.spring.constant.CommonConstant;
 import frog.learn.spring.mybatis.gen.mapper.GCoffeeMapper;
 import frog.learn.spring.mybatis.gen.model.GCoffee;
 import frog.learn.spring.mybatis.gen.model.GCoffeeExample;
@@ -23,7 +24,7 @@ public class GCoffeeServiceImpl implements GCoffeeService {
     public void demo(){
         GCoffee espresso = new GCoffee()
                 .withName("espresso")
-                .withPrice(Money.of(CurrencyUnit.of("CNY"), 20.0))
+                .withPrice(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 20.0))
                 .withCreateTime(new Date())
                 .withUpdateTime(new Date());
         gCoffeeMapper.insert(espresso);
@@ -31,7 +32,7 @@ public class GCoffeeServiceImpl implements GCoffeeService {
 
         GCoffee latte = new GCoffee()
                 .withName("latte")
-                .withPrice(Money.of(CurrencyUnit.of("CNY"), 30.0))
+                .withPrice(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 30.0))
                 .withCreateTime(new Date())
                 .withUpdateTime(new Date());
         gCoffeeMapper.insert(latte);

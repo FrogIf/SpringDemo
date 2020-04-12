@@ -1,5 +1,6 @@
 package frog.learn.spring.reactor;
 
+import frog.learn.spring.constant.CommonConstant;
 import frog.learn.spring.mongo.model.MongoCoffee;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;
@@ -51,14 +52,14 @@ public class SimpleMongoReactorDemo {
     private List<MongoCoffee> initCoffee(){
         MongoCoffee espresso = MongoCoffee.builder()
                 .name("espresso")
-                .price(Money.of(CurrencyUnit.of("CNY"), 20.0))
+                .price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 20.0))
                 .createTime(new Date())
                 .updateTime(new Date())
                 .build();
 
         MongoCoffee latte = MongoCoffee.builder()
                 .name("latte")
-                .price(Money.of(CurrencyUnit.of("CNY"), 30.0))
+                .price(Money.of(CurrencyUnit.of(CommonConstant.MONEY_UNIT), 30.0))
                 .createTime(new Date())
                 .updateTime(new Date())
                 .build();

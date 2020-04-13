@@ -64,4 +64,9 @@ public class CoffeeServiceImpl implements CoffeeService {
 
     }
 
+    @Override
+    public List<Coffee> getCoffeeByName(List<String> names) {
+        return coffeeRepository.findByNameInOrderById(names);
+    }
+
 }

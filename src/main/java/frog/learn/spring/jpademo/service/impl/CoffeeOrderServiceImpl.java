@@ -34,6 +34,7 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
 
 
     @Override
+    @Transactional
     public CoffeeOrder createOrder(String customer, Coffee... coffees){
         CoffeeOrder order = CoffeeOrder.builder().customer(customer)
                 .items(new ArrayList<>(Arrays.asList(coffees))) // 必须再包一层, Arrays.asList生成的是不可编辑的List, 再updateOrder时, 会调用remove方法, 导致异常

@@ -17,4 +17,6 @@ public interface CoffeeService {
     List<Coffee> findAll();
 
     void reloadCoffee();
+
+    List<Coffee> getCoffeeByName(List<String> names);
 }

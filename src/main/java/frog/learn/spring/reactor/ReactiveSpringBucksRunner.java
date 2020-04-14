@@ -1,4 +1,4 @@
-package frog.learn.spring.reactor.demo;
+package frog.learn.spring.reactor;
 
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.model.CoffeeOrder;

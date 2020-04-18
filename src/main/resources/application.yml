@@ -49,6 +49,15 @@ spring:
       pool:
         max-active: 5
         max-idle: 5
+  thymeleaf:
+    cache: false  # 开发环境, 不使用thymeleaf缓存
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    cache:
+      cachecontrol:
+        max-age: 20s
+        # no-cache: true
 
 
 # Spring boot actuator端点启用和暴露

@@ -18,7 +18,7 @@ public class CoffeeOrder extends BaseEntity implements Serializable {
 
     private String customer;
 
-    @ManyToMany
+    @ManyToMany(fetch =  FetchType.EAGER)
     @JoinTable(name = "t_order_coffee")
     @OrderBy("id")
     private List<Coffee> items;

@@ -64,7 +64,8 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
 
     @Override
     public CoffeeOrder get(Long id) {
-        return coffeeOrderRepository.getOne(id);
+        return coffeeOrderRepository.findById(id).orElse(null);
+//        return coffeeOrderRepository.getOne(id);
     }
 
     @Override

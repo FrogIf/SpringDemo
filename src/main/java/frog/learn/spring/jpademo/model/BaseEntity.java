@@ -1,11 +1,8 @@
 package frog.learn.spring.jpademo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,7 +14,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
+//@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})   // 引入 jackson-datatype-hibernate5 之后, 就可以注掉这块了
 public class BaseEntity implements Serializable {
 
     @Id

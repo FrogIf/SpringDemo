@@ -37,10 +37,20 @@ public class CoffeeController {
         return coffeeService.findAll();
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    /*
+     * 添加jackson-dataformat-xml依赖之后
+     * 可以根据请求头中的Accept, 判断返回:
+     * application/xml
+     * application/json;utf-8
+     */
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+//    @RequestMapping(path = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public Coffee getById(@PathVariable("id") Long id){
-        return coffeeService.getCoffee(id);
+        Coffee coffee = coffeeService.getCoffee(id);
+        log.info("coffee : {}", coffee);
+        return coffee;
+//        return coffeeService.getCoffee(id);   // 配置hibernate5Module之后, 这样只会返回null
     }
 
     @GetMapping(path = "/", params = "name")
@@ -49,9 +59,25 @@ public class CoffeeController {
         return coffeeService.findOneCoffee(name).orElse(null);
     }
 
+    /*
+     * 这里会使用spring mvc自己的逻辑进行coffee请求参数的解析
+     */
     @PostMapping(path = "/", consumes =  MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseBody
-    public Coffee addCoffeeWithBindingResult(@Valid NewCoffeeRequest coffee, BindingResult result){
+    public Coffee addCoffeeWithBindingResultForForm(@Valid NewCoffeeRequest coffee, BindingResult result){
+        return addCoffee(coffee, result);
+    }
+
+    /*
+     * 这里会使用jackson解析coffee请求参数
+     */
+    @PostMapping(path = "/", consumes =  MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Coffee addCoffeeWithBindingResultForJson(@Valid @RequestBody NewCoffeeRequest coffee, BindingResult result){
+        return addCoffee(coffee, result);
+    }
+
+    private Coffee addCoffee(NewCoffeeRequest coffee, BindingResult result){
         if(result.hasErrors()){
             // TODO 优化为自定义异常
             log.warn("binding error : {}", result);

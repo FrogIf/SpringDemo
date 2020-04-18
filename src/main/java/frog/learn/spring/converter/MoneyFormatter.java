@@ -12,6 +12,7 @@ import java.util.Locale;
 
 /**
  * 注入到spring容器之后, springmvc会自动查找, 识别, 应用到该使用的转换中
+ * 这个是给spring mvc使用的, 不是给jackson使用的, 要分清楚!!!
  */
 @Component
 public class MoneyFormatter implements Formatter<Money> {

@@ -1,9 +1,9 @@
 package frog.learn.spring.bucks.controller;
 
+import frog.learn.spring.bucks.controller.exception.FormValidationException;
 import frog.learn.spring.bucks.controller.request.NewCoffeeRequest;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.service.CoffeeService;
-import frog.learn.spring.mybatis.common.model.MCoffee;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.ValidationException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -65,7 +66,10 @@ public class CoffeeController {
     @PostMapping(path = "/", consumes =  MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseBody
     public Coffee addCoffeeWithBindingResultForForm(@Valid NewCoffeeRequest coffee, BindingResult result){
-        return addCoffee(coffee, result);
+        if(result.hasErrors()){
+            throw new FormValidationException(result);
+        }
+        return coffeeService.saveCoffee(coffee.getName(), coffee.getPrice());
     }
 
     /*
@@ -74,14 +78,8 @@ public class CoffeeController {
     @PostMapping(path = "/", consumes =  MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coffee addCoffeeWithBindingResultForJson(@Valid @RequestBody NewCoffeeRequest coffee, BindingResult result){
-        return addCoffee(coffee, result);
-    }
-
-    private Coffee addCoffee(NewCoffeeRequest coffee, BindingResult result){
         if(result.hasErrors()){
-            // TODO 优化为自定义异常
-            log.warn("binding error : {}", result);
-            return null;
+            throw new ValidationException(result.toString());
         }
         return coffeeService.saveCoffee(coffee.getName(), coffee.getPrice());
     }

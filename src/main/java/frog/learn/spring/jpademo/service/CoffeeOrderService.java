@@ -17,4 +17,6 @@ public interface CoffeeOrderService {
     void findOrders();
 
     List<CoffeeOrder> findAllByCustomer(String customer);
+
+    CoffeeOrder get(Long id);
 }

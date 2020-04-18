@@ -158,7 +158,10 @@
             <artifactId>r2dbc-h2</artifactId>
             <version>1.0.0.M6</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

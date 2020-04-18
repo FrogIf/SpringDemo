@@ -1,6 +1,7 @@
 package frog.learn.spring.jpademo.service;
 
 import frog.learn.spring.jpademo.model.Coffee;
+import org.joda.money.Money;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,4 +20,8 @@ public interface CoffeeService {
     void reloadCoffee();
 
     List<Coffee> getCoffeeByName(List<String> names);
+
+    Coffee getCoffee(Long id);
+
+    Coffee saveCoffee(String name, Money price);
 }

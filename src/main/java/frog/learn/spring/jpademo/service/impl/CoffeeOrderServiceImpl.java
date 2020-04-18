@@ -63,6 +63,11 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
     }
 
     @Override
+    public CoffeeOrder get(Long id) {
+        return coffeeOrderRepository.getOne(id);
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void initOrders() {
         // 创建coffee

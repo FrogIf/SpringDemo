@@ -4,6 +4,7 @@ import frog.learn.spring.jpademo.dao.CoffeeRepository;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.service.CoffeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -67,6 +68,20 @@ public class CoffeeServiceImpl implements CoffeeService {
     @Override
     public List<Coffee> getCoffeeByName(List<String> names) {
         return coffeeRepository.findByNameInOrderById(names);
+    }
+
+    @Override
+    public Coffee getCoffee(Long id) {
+        return coffeeRepository.getOne(id);
+    }
+
+    @Override
+    public Coffee saveCoffee(String name, Money price) {
+        Coffee coffee = Coffee.builder()
+                .name(name)
+                .price(price)
+                .build();
+        return coffeeRepository.save(coffee);
     }
 
 }

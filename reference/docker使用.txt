@@ -18,3 +18,7 @@ docker pull redis
 
 启动redis
 docker run --name redis -d -p 6379:6379 redis
+
+
+启动mysql
+docker run --name mysql -d -p 3306:3306 -v /docker-data/mysql:/var/lib/mysql -e MYSQL_DATABASE=springbucks -e MYSQL_USER=springbucks -e MYSQL_PASSWORD=springbucks -e MYSQL_ROOT_PASSWORD=root_password mysql

@@ -38,13 +38,16 @@ public class ReactiveConfigure extends AbstractR2dbcConfiguration {
     @Value(value = "${spring.datasource.url}")
     private String url;
 
+    @Value(value = "${spring.datasource.password}")
+    private String password;
+
     @Override
     @Bean
     public ConnectionFactory connectionFactory() {
         // H2ConnectionConfiguration中会自动拼接"jdbc:h2:", 所以需要把原来的去掉
         this.url = this.url.substring(this.url.indexOf(':') + 1);
         this.url = this.url.substring(this.url.indexOf(':') + 1);
-        return new H2ConnectionFactory(H2ConnectionConfiguration.builder().url(url).username(username).build());
+        return new H2ConnectionFactory(H2ConnectionConfiguration.builder().url(url).username(username).password(password).build());
     }
 
     @Bean

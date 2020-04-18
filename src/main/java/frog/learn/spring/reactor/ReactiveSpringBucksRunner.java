@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.Date;
 
-@Component
+//@Component
 @Slf4j
 public class ReactiveSpringBucksRunner implements ApplicationRunner {
     @Autowired

@@ -64,7 +64,8 @@ spring:
       cachecontrol:
         max-age: 20s
         # no-cache: true
-
+  session:
+    store-type: redis
 
 # Spring boot actuator端点启用和暴露
 management:

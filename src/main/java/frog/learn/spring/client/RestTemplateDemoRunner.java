@@ -1,6 +1,8 @@
 package frog.learn.spring.client;
 
+import frog.learn.spring.bucks.controller.request.NewOrderRequest;
 import frog.learn.spring.jpademo.model.Coffee;
+import frog.learn.spring.jpademo.model.CoffeeOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -25,6 +27,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -72,6 +75,30 @@ public class RestTemplateDemoRunner implements ApplicationRunner {
                 = new ParameterizedTypeReference<List<Coffee>>(){};  // 为防止泛型擦除, 这里必须传入这个对象, 另外需要注意, 语句末尾的大括号!
         ResponseEntity<List<Coffee>> listResp = restTemplate.exchange(coffeeUri, HttpMethod.GET, null, typeReference);
         listResp.getBody().forEach(c -> log.info("Coffee : {}", c));
+
+
+        log.info("--------------------create order------------------------");
+        long id = createOrder();
+
+        CoffeeOrder coffeeOrder = restTemplate.getForObject("http://localhost:8080/order/{id}", CoffeeOrder.class, id);
+        log.info("Order : {}", coffeeOrder);
+    }
+
+
+
+    private long createOrder(){
+        NewOrderRequest request = NewOrderRequest.builder()
+                .customer("frog")
+                .items(Arrays.asList("latte", "capuccino"))
+                .build();
+        RequestEntity<NewOrderRequest> requestEntity = RequestEntity.post(UriComponentsBuilder.fromUriString("http://localhost:8080/order/").build().toUri())
+                .body(request);
+
+        ResponseEntity<CoffeeOrder> resp = restTemplate.exchange(requestEntity, CoffeeOrder.class);
+        log.info("Order Request Status Code : {}", resp.getStatusCode());
+        Long id = resp.getBody().getId();
+        log.info("Order ID : {}", id);
+        return id;
     }
 
     @Bean

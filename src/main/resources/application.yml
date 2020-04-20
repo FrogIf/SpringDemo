@@ -99,3 +99,10 @@ redis:
   maxIdle: 5
   testOnBorrow : true
 
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          r2dbc: DEBUG
+

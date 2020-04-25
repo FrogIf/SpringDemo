@@ -3,3 +3,5 @@ http://localhost:8080/actuator/health -- 查看服务是否健康
 DataAccessException
 
 DispatcherServlet -- doDispatch
+
+META-INF/spring.factories -- 用于定位自动配置类

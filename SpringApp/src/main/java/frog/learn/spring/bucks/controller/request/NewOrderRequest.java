@@ -1,9 +1,6 @@
 package frog.learn.spring.bucks.controller.request;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -12,6 +9,8 @@ import java.util.List;
 @Getter
 @ToString
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class NewOrderRequest {
     @NotEmpty
     private String customer;

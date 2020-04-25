@@ -8,12 +8,12 @@ import org.springframework.boot.ApplicationRunner;
 public class FrogDotRunner implements ApplicationRunner {
 
     public FrogDotRunner() {
-        log.info("FROG DOT.....................");
+        log.info("----------------Initializer FrogDotRunner--------------");
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        log.info("----------------Initializer FrogDotRunner");
+        log.info("FROG DOT.....................");
     }
 
 }

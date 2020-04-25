@@ -13,6 +13,7 @@
         <module>CustomConfigure</module>
         <module>FrogBall</module>
         <module>FrogDot</module>
+        <module>frogball-spring-boot-starter</module>
     </modules>
 
     <properties>

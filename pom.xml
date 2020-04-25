@@ -12,6 +12,7 @@
         <module>SpringApp</module>
         <module>CustomConfigure</module>
         <module>FrogBall</module>
+        <module>FrogDot</module>
     </modules>
 
     <properties>

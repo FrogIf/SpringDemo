@@ -24,4 +24,6 @@ public interface CoffeeService {
     Coffee getCoffee(Long id);
 
     Coffee saveCoffee(String name, Money price);
+
+    long getCoffeeCount();
 }

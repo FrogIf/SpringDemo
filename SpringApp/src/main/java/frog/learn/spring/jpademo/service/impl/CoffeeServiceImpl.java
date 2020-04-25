@@ -84,4 +84,9 @@ public class CoffeeServiceImpl implements CoffeeService {
         return coffeeRepository.save(coffee);
     }
 
+    @Override
+    public long getCoffeeCount() {
+        return coffeeRepository.count();
+    }
+
 }

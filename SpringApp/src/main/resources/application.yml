@@ -106,3 +106,8 @@ logging:
         data:
           r2dbc: DEBUG
 
+frog:
+  model:
+    value: 12
+    child-model:
+      name: frog

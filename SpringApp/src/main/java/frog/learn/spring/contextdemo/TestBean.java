@@ -9,6 +9,7 @@ public class TestBean {
 
     public TestBean(String name) {
         this.name = name;
+        log.info("initializer test bean : {}", name);
     }
 
     public void hello(){

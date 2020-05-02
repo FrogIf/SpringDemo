@@ -1,4 +1,10 @@
 # 不做端口配置时, 默认使用8080端口
+server:
+  port: 8080
+  error:
+    include-exception: true # 开发环境开启, 用于前台输出错误日志
+    include-stacktrace: always # 开发环境开启, 用于前台输出错误日志
+
 spring:
   datasource:
     initialization-mode: always # 使用脚本进行初始化

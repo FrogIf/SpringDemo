@@ -14,8 +14,8 @@
         <module>FrogBall</module>
         <module>FrogDot</module>
         <module>frogball-spring-boot-starter</module>
-        <module>MonitorClient</module>
         <module>SpringBootAdminPortal</module>
+        <module>SingleRunnableApplication</module>
     </modules>
 
     <properties>

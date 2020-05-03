@@ -1,0 +1,3 @@
+spring:
+  main:
+    web-application-type: none  # 指示不启用web容器

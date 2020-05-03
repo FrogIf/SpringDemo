@@ -72,8 +72,6 @@ spring:
         # no-cache: true
   session:
     store-type: redis
-  application:
-    name: SpringApp
   security:
     user:
       name: frog

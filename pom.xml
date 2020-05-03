@@ -16,6 +16,7 @@
         <module>frogball-spring-boot-starter</module>
         <module>SpringBootAdminPortal</module>
         <module>SingleRunnableApplication</module>
+        <module>EurekaServer</module>
     </modules>
 
     <properties>

@@ -1,6 +1,6 @@
 package frog.learn.spring;
 
-import frog.learn.spring.bucks.controller.interceptors.PerformanceInterceptor;
+import frog.learn.spring.common.web.interceptor.PerformanceInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

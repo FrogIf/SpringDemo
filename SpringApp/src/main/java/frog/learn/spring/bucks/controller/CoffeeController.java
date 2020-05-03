@@ -1,7 +1,7 @@
 package frog.learn.spring.bucks.controller;
 
-import frog.learn.spring.bucks.controller.exception.FormValidationException;
-import frog.learn.spring.bucks.controller.request.NewCoffeeRequest;
+import frog.learn.spring.common.web.exception.FormValidationException;
+import frog.learn.spring.common.web.request.NewCoffeeRequest;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.service.CoffeeService;
 import lombok.extern.slf4j.Slf4j;

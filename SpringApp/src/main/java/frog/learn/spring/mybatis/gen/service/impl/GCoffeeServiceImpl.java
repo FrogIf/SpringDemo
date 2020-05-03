@@ -1,6 +1,6 @@
 package frog.learn.spring.mybatis.gen.service.impl;
 
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
 import frog.learn.spring.mybatis.gen.mapper.GCoffeeMapper;
 import frog.learn.spring.mybatis.gen.model.GCoffee;
 import frog.learn.spring.mybatis.gen.model.GCoffeeExample;

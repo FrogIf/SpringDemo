@@ -1,7 +1,7 @@
 package frog.learn.spring.mongo.controller;
 
 import com.mongodb.client.result.UpdateResult;
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
 import frog.learn.spring.mongo.model.MongoCoffee;
 import frog.learn.spring.mongo.repository.MongoCoffeeRepository;
 import lombok.extern.slf4j.Slf4j;

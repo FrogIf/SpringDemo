@@ -1,8 +1,8 @@
 package frog.learn.spring.reactor.controller;
 
-import frog.learn.spring.bucks.controller.request.NewOrderRequest;
+import frog.learn.spring.common.constant.OrderState;
+import frog.learn.spring.common.web.request.NewOrderRequest;
 import frog.learn.spring.jpademo.model.CoffeeOrder;
-import frog.learn.spring.jpademo.model.OrderState;
 import frog.learn.spring.reactor.repository.R2DBCCoffeeOrderRepository;
 import frog.learn.spring.reactor.repository.R2DBCCoffeeRepository;
 import lombok.extern.slf4j.Slf4j;

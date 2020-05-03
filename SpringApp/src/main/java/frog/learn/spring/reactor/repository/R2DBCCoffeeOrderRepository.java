@@ -1,8 +1,8 @@
 package frog.learn.spring.reactor.repository;
 
+import frog.learn.spring.common.constant.OrderState;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.model.CoffeeOrder;
-import frog.learn.spring.jpademo.model.OrderState;
 import frog.learn.spring.reactor.anno.R2DBCRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.function.DatabaseClient;

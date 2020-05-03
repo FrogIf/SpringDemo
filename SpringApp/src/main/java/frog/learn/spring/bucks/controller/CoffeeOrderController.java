@@ -1,6 +1,6 @@
 package frog.learn.spring.bucks.controller;
 
-import frog.learn.spring.bucks.controller.request.NewOrderRequest;
+import frog.learn.spring.common.web.request.NewOrderRequest;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.model.CoffeeOrder;
 import frog.learn.spring.jpademo.service.CoffeeOrderService;

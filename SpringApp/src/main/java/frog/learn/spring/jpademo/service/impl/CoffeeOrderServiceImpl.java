@@ -1,11 +1,11 @@
 package frog.learn.spring.jpademo.service.impl;
 
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
+import frog.learn.spring.common.constant.OrderState;
 import frog.learn.spring.jpademo.dao.CoffeeOrderRepository;
 import frog.learn.spring.jpademo.dao.CoffeeRepository;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.model.CoffeeOrder;
-import frog.learn.spring.jpademo.model.OrderState;
 import frog.learn.spring.jpademo.service.CoffeeOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;

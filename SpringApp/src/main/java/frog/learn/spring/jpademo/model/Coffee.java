@@ -2,9 +2,9 @@ package frog.learn.spring.jpademo.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import frog.learn.spring.constant.CommonConstant;
-import frog.learn.spring.jpademo.serializer.MoneyDeserializer;
-import frog.learn.spring.jpademo.serializer.MoneySerializer;
+import frog.learn.spring.common.constant.CommonConstant;
+import frog.learn.spring.common.web.converter.MoneyDeserializer;
+import frog.learn.spring.common.web.converter.MoneySerializer;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.joda.money.Money;

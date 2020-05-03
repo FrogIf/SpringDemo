@@ -1,8 +1,8 @@
 package frog.learn.spring.bucks.controller;
 
+import frog.learn.spring.common.constant.OrderState;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.model.CoffeeOrder;
-import frog.learn.spring.jpademo.model.OrderState;
 import frog.learn.spring.jpademo.service.CoffeeOrderService;
 import frog.learn.spring.jpademo.service.CoffeeService;
 import lombok.extern.slf4j.Slf4j;

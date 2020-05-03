@@ -1,7 +1,7 @@
 package frog.learn.spring;
 
-import frog.learn.spring.converter.MoneyReadConverter;
-import frog.learn.spring.converter.MoneyWriteConverter;
+import frog.learn.spring.common.web.converter.MoneyReadConverter;
+import frog.learn.spring.common.web.converter.MoneyWriteConverter;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.reactor.anno.R2DBCRepository;
 import io.r2dbc.h2.H2ConnectionConfiguration;

@@ -1,7 +1,7 @@
 package frog.learn.spring.mybatis.common.controller;
 
 import com.github.pagehelper.PageInfo;
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
 import frog.learn.spring.mybatis.common.model.MCoffee;
 import frog.learn.spring.mybatis.common.service.MCoffeeService;
 import lombok.extern.slf4j.Slf4j;

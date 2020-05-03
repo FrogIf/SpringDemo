@@ -11,12 +11,6 @@
     
     <artifactId>SpringApp</artifactId>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-    </properties>
-
     <repositories>
         <!--r2dbc处于实验阶段, 在阿里的仓库中不存在, 需要直接从spring milestone仓库获取-->
         <repository>
@@ -34,7 +28,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.1.RELEASE</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -253,12 +247,17 @@
         <dependency>
             <groupId>sch.frog</groupId>
             <artifactId>frogball-spring-boot-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${frog-app.version}</version>
         </dependency>
         <dependency>
             <groupId>sch.frog</groupId>
             <artifactId>FrogDot</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${frog-app.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>sch.frog</groupId>
+            <artifactId>CommonSupport</artifactId>
+            <version>${frog-app.version}</version>
         </dependency>
 
         <dependency>
@@ -289,8 +288,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

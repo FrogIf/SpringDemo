@@ -1,7 +1,7 @@
 package frog.learn.spring;
 
-import frog.learn.spring.converter.MoneyReadConverter;
-import frog.learn.spring.converter.MoneyWriteConverter;
+import frog.learn.spring.common.web.converter.MoneyReadConverter;
+import frog.learn.spring.common.web.converter.MoneyWriteConverter;
 import frog.learn.spring.mongo.MongoDBRepository;
 import frog.learn.spring.reactor.anno.ReactiveMongoDBRepository;
 import org.springframework.context.annotation.Bean;

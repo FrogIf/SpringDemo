@@ -1,6 +1,6 @@
 package frog.learn.spring.reactor;
 
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
 import frog.learn.spring.mongo.model.MongoCoffee;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;

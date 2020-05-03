@@ -1,6 +1,6 @@
 package frog.learn.spring.mybatis.common.typehandler;
 
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.joda.money.CurrencyUnit;

@@ -1,5 +1,6 @@
 package frog.learn.spring.jpademo.model;
 
+import frog.learn.spring.common.constant.OrderState;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,6 +1,6 @@
 package frog.learn.spring.redis;
 
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
 import frog.learn.spring.jpademo.service.CoffeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.money.CurrencyUnit;

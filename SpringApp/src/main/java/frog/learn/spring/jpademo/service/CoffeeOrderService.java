@@ -1,8 +1,8 @@
 package frog.learn.spring.jpademo.service;
 
+import frog.learn.spring.common.constant.OrderState;
 import frog.learn.spring.jpademo.model.Coffee;
 import frog.learn.spring.jpademo.model.CoffeeOrder;
-import frog.learn.spring.jpademo.model.OrderState;
 
 import java.util.List;
 

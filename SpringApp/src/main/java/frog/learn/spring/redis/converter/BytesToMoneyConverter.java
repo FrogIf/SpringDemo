@@ -1,6 +1,6 @@
 package frog.learn.spring.redis.converter;
 
-import frog.learn.spring.constant.CommonConstant;
+import frog.learn.spring.common.constant.CommonConstant;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.springframework.core.convert.converter.Converter;

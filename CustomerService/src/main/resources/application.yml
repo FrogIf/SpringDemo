@@ -12,10 +12,13 @@ logging:
     sch.frog.learn.spring.client.integration.CoffeeService : debug
 spring:
   cloud:
-    zookeeper:  # zookeeper作为注册中心
+    zookeeper:  # zookeeper注册中心
       connect-string: 192.168.99.100:2181
-    consul: # consul作为注册中心
+    consul: # consul注册中心
       host: 192.168.99.100
       port: 8500
       discovery:
         prefer-ip-address: true
+    nacos: # nacos注册中心
+      discovery:
+        server-addr: 192.168.99.100:8848

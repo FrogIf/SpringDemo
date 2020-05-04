@@ -22,3 +22,18 @@ docker run --name redis -d -p 6379:6379 redis
 
 启动mysql
 docker run --name mysql -d -p 3306:3306 -v /docker-data/mysql:/var/lib/mysql -e MYSQL_DATABASE=springbucks -e MYSQL_USER=springbucks -e MYSQL_PASSWORD=springbucks -e MYSQL_ROOT_PASSWORD=root_password mysql
+
+获取zookeeper
+docker pull zookeeper:3.5
+
+自动zookeeper
+docker run --name zookeeper -p 2181:2181 -d zookeeper:3.5
+
+使用zookeeper
+>>> docker exec -it zookeeper bash
+>>> cd bin
+>>> ./zkCli.sh
+>>> ls /
+>>> ls /services
+>>> ls /services/frog-coffee
+...

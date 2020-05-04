@@ -88,6 +88,9 @@ spring:
             user:
               name: ${spring.security.user.name}
               password: ${spring.security.user.password}
+  cloud:
+    zookeeper:
+      connect-string: 192.168.99.100:2181 # zookeeper所在地址
 
 # Spring boot actuator端点启用和暴露
 management:
@@ -145,3 +148,4 @@ frog:
     value: 12
     child-model:
       name: frog
+

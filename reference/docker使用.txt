@@ -37,3 +37,8 @@ docker run --name zookeeper -p 2181:2181 -d zookeeper:3.5
 >>> ls /services
 >>> ls /services/frog-coffee
 ...
+
+
+consul:
+docker pull consul
+docker run --name consul -d -p 8500:8500 -p 8600:8600/udp consul

@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>SpringApp</module>
+        <module>CoffeeService</module>
         <module>CustomConfigure</module>
         <module>FrogBall</module>
         <module>FrogDot</module>
@@ -17,8 +17,9 @@
         <module>SpringBootAdminPortal</module>
         <module>SingleRunnableApplication</module>
         <module>EurekaServer</module>
-        <module>RibbonCustomerService</module>
+        <module>CustomerService</module>
         <module>CommonSupport</module>
+        <module>CommonApi</module>
     </modules>
 
     <properties>

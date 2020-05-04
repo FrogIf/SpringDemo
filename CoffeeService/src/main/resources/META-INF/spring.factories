@@ -1,0 +1,2 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  sch.frog.learn.spring.property.CustomEnvironmentPostProcessor

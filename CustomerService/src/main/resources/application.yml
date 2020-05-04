@@ -1,0 +1,12 @@
+server:
+  port: 0 # 指示随机使用一个端口
+feign:
+  client:
+    config:
+      default:
+        connection-timeout: 500
+        read-timeout: 500
+
+logging:
+  level:
+    sch.frog.learn.spring.client.integration.CoffeeService : debug

@@ -1,5 +1,8 @@
 package sch.frog.learn.spring.bucks.controller;
 
+import io.github.resilience4j.ratelimiter.RateLimiter;
+import io.github.resilience4j.ratelimiter.RateLimiterRegistry;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +26,19 @@ import java.util.List;
 @Slf4j
 public class CoffeeOrderController {
 
+    private RateLimiter rateLimiter;
+
+    public CoffeeOrderController(RateLimiterRegistry rateLimiterRegistry) {
+        this.rateLimiter = rateLimiterRegistry.rateLimiter("order");
+    }
+
     @Autowired
     private CoffeeOrderService coffeeOrderService;
 
     @Autowired
     private CoffeeService coffeeService;
 
+    @io.github.resilience4j.ratelimiter.annotation.RateLimiter(name = "order")
     @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -42,9 +52,16 @@ public class CoffeeOrderController {
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public CoffeeOrder getOrder(@PathVariable("id") Long id){
-        return coffeeOrderService.get(id);
-    }
+        CoffeeOrder order = null;
+        try{
+            order = rateLimiter.executeSupplier(() -> coffeeOrderService.get(id));  // 限流
+            log.info("Get Order : {}", order);
+        }catch (RequestNotPermitted e){
+            log.warn("Request Not Permitted! {}", e.getMessage());
+        }
 
+        return order;
+    }
 
     @ModelAttribute
     public List<Coffee> coffeeList(){

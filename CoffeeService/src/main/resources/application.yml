@@ -159,3 +159,18 @@ frog:
   discovery:
     enable: true
 
+resilience4j:
+  ratelimiter:
+    limiters:
+      coffee:
+        limit-for-period: 5 # 每一个时间窗口下只允许5个请求
+        limit-refresh-period-in-millis: 30000 # 时间窗口大小ms
+        timeout-in-millis: 5000
+        subscribe-for-events: true
+        register-health-indicator: true
+      order:
+        limit-for-period: 5 # 每一个时间窗口下只允许5个请求
+        limit-refresh-period-in-millis: 30000 # 时间窗口大小ms
+        timeout-in-millis: 5000
+        subscribe-for-events: true
+        register-health-indicator: true

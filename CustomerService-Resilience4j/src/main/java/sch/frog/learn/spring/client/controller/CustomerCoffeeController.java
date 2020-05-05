@@ -1,5 +1,7 @@
 package sch.frog.learn.spring.client.controller;
 
+import io.github.resilience4j.bulkhead.Bulkhead;
+import io.github.resilience4j.bulkhead.BulkheadRegistry;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerOpenException;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
@@ -31,16 +33,28 @@ public class CustomerCoffeeController {
     @Autowired
     private CoffeeOrderService coffeeOrderService;
 
-    private CircuitBreaker circuitBreaker;
+    /*
+     * 断路保护, 如果向下游请求失败, 则启动
+     */
+    private final CircuitBreaker circuitBreaker;
 
-    public CustomerCoffeeController(CircuitBreakerRegistry circuitBreakerRegistry) {
+    /*
+     * 隔仓, 保证同意时刻的并发数量, 用于限流
+     */
+    private final Bulkhead bulkhead;
+
+    public CustomerCoffeeController(CircuitBreakerRegistry circuitBreakerRegistry, BulkheadRegistry bulkheadRegistry) {
         this.circuitBreaker = circuitBreakerRegistry.circuitBreaker("menu");
+        this.bulkhead = bulkheadRegistry.bulkhead("menu");
     }
 
     @GetMapping("/menu")
     public List<Coffee> readMenu(){
         return Try.ofSupplier(
-                    CircuitBreaker.decorateSupplier(this.circuitBreaker, ()->coffeeService.findAll())
+                    Bulkhead.decorateSupplier(
+                            this.bulkhead,
+                            CircuitBreaker.decorateSupplier(this.circuitBreaker, ()->coffeeService.findAll())
+                    )
                 )
                 .recover(CircuitBreakerOpenException.class, Collections.emptyList())
                 .get();
@@ -48,6 +62,7 @@ public class CustomerCoffeeController {
 
     @PostMapping("/order")
     @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker(name = "order")
+    @io.github.resilience4j.bulkhead.annotation.Bulkhead(name = "order")
     public CoffeeOrder createOrder(){
         NewOrderRequest orderRequest = NewOrderRequest.builder()
                 .customer("frog")

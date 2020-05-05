@@ -1,5 +1,6 @@
 package sch.frog.learn.spring.bucks.controller;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/coffee")
+@RateLimiter(name = "coffee")   // 限流声明方式1
 @Controller
 @Slf4j
 public class CoffeeController {

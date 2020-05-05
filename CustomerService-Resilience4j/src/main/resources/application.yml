@@ -41,3 +41,11 @@ resilience4j:
         ring-buffer-size-in-close-state: 5
         ring-buffer-size-in-half-open-state: 3
         event-consumer-buffer-size: 10
+  bulkhead:
+    backends:
+      order:
+        max-concurrent-call: 1
+        max-wait-time: 5
+      menu:
+        max-concurrent-call: 5
+        max-wait-time: 5

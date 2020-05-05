@@ -1,5 +1,5 @@
 server:
-  port: 8090 # 0的话, 指示随机使用一个端口
+  port: 8091 # 0的话, 指示随机使用一个端口
   error:
     include-exception: false # 开发环境开启, 用于前台输出错误日志
     include-stacktrace: never # 开发环境开启, 用于前台输出错误日志
@@ -9,30 +9,35 @@ feign:
       default:
         connection-timeout: 500
         read-timeout: 500
-  hystrix:
-    enabled: true  # 指示是否启用hystrix熔断
 
 logging:
   level:
     sch.frog.learn.spring.client.integration.CoffeeService : debug
 spring:
   cloud:
-    zookeeper:  # zookeeper注册中心
-      connect-string: 192.168.99.100:2181
     consul: # consul注册中心
       host: 192.168.99.100
       port: 8500
       discovery:
         prefer-ip-address: true
-    nacos: # nacos注册中心
-      discovery:
-        server-addr: 192.168.99.100:8848
 
-frog:
-  discovery:
-    enable: true
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+resilience4j:
+  circuitbreaker:
+    backends:
+      order:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 5000
+        ring-buffer-size-in-close-state: 5
+        ring-buffer-size-in-half-open-state: 3
+        event-consumer-buffer-size: 10
+      menu:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 5000
+        ring-buffer-size-in-close-state: 5
+        ring-buffer-size-in-half-open-state: 3
+        event-consumer-buffer-size: 10

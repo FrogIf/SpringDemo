@@ -22,6 +22,7 @@
         <module>CustomDiscoveryClient</module>
         <module>HystrixDashboard</module>
         <module>Turbine</module>
+        <module>CustomerService-Resilience4j</module>
     </modules>
 
     <properties>

@@ -1,7 +1,9 @@
 package sch.frog.learn.spring.client.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,7 @@ public class CustomerCoffeeController {
     }
 
     @PostMapping("/order")
+    @HystrixCommand(fallbackMethod = "createOrderFallBack") // 熔断方式1
     public CoffeeOrder createOrder(){
         NewOrderRequest orderRequest = NewOrderRequest.builder()
                 .customer("frog")
@@ -43,6 +46,11 @@ public class CustomerCoffeeController {
 
         log.info("Order ID : {}", coffeeOrder != null ? coffeeOrder.getId() : "-");
         return coffeeOrder;
+    }
+
+    public CoffeeOrder createOrderFallBack(){
+        log.warn("fall to null order.");
+        return null;
     }
 
 }

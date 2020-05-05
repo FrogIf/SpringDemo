@@ -1,6 +1,7 @@
 package sch.frog.learn.spring.client;
 
 import feign.Logger;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import sch.frog.learn.spring.common.connection.CustomConnectionKeepAliveStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "sch.frog.learn.spring")
+@EnableCircuitBreaker   // 启动熔断
 public class ClientConfigure {
 
     /**

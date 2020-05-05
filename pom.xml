@@ -20,6 +20,8 @@
         <module>CustomerService</module>
         <module>CommonSupport</module>
         <module>CustomDiscoveryClient</module>
+        <module>HystrixDashboard</module>
+        <module>Turbine</module>
     </modules>
 
     <properties>

@@ -31,3 +31,8 @@ spring:
 frog:
   discovery:
     enable: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

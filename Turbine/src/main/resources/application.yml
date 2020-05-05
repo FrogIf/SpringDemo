@@ -1,0 +1,17 @@
+server:
+  port: 9000
+management:
+  endpoint:
+    health:
+      show-details: always
+spring:
+  cloud:
+    consul:
+      port: 8500
+      host: 192.168.99.100
+      discovery:
+        prefer-ip-address: true
+turbine:
+  aggregator:
+    cluster-config: frog-customer # 指定聚合的集群的应用名
+  app-config: frog-customer

@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "sch.frog.learn.spring")
-//@EnableCircuitBreaker   // 启动熔断
+//@EnableCircuitBreaker   // resilience4j 不能使用这个注解   启动熔断
 public class ClientConfigure {
 
     /**

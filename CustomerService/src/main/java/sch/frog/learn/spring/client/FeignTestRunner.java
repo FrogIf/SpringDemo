@@ -13,9 +13,9 @@ import sch.frog.learn.spring.common.web.request.NewOrderRequest;
 
 import java.util.Arrays;
 
-@Component
 @Slf4j
-@Order(2)
+//@Component
+//@Order(2)
 public class FeignTestRunner implements ApplicationRunner {
 
     @Autowired
@@ -42,3 +42,4 @@ public class FeignTestRunner implements ApplicationRunner {
     }
 
 }
+

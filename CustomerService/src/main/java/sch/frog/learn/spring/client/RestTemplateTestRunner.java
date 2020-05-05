@@ -26,9 +26,9 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+//@Component
 @Slf4j
-@Order(1)
+//@Order(1)
 public class RestTemplateTestRunner implements ApplicationRunner {
 
     @Resource(name = "loadBalanceRestTemplate")

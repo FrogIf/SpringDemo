@@ -19,6 +19,7 @@
         <module>EurekaServer</module>
         <module>CustomerService</module>
         <module>CommonSupport</module>
+        <module>CustomDiscoveryClient</module>
     </modules>
 
     <properties>

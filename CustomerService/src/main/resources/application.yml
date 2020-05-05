@@ -22,3 +22,7 @@ spring:
     nacos: # nacos注册中心
       discovery:
         server-addr: 192.168.99.100:8848
+
+frog:
+  discovery:
+    enable: true

@@ -156,4 +156,6 @@ frog:
     value: 12
     child-model:
       name: frog
+  discovery:
+    enable: true
 

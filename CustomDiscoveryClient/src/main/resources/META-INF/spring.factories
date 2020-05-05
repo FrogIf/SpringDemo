@@ -1,0 +1,2 @@
+org.springframework.cloud.client.discovery.EnableDiscoveryClient=\
+sch.frog.learn.spring.client.FrogDiscoveryAutoConfig

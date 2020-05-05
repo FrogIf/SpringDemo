@@ -1,0 +1,2 @@
+frog-coffee,localhost:8080
+frog-customer,localhost:8081

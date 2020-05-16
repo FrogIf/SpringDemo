@@ -23,6 +23,8 @@
         <module>HystrixDashboard</module>
         <module>Turbine</module>
         <module>CustomerService-Resilience4j</module>
+        <module>ConfigServer</module>
+        <module>GitConfigServer</module>
     </modules>
 
     <properties>

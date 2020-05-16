@@ -1,0 +1,5 @@
+frog:
+  value: 123
+  order:
+    discount: 60
+    waiter-prefix: frog-waiter-dev-

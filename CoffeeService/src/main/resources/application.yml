@@ -158,6 +158,8 @@ frog:
       name: frog
   discovery:
     enable: true
+  order:
+    discount: 10
 
 resilience4j:
   ratelimiter:

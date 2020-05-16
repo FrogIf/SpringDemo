@@ -15,9 +15,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import sch.frog.learn.spring.jpademo.service.CoffeeOrderService;
+import sch.frog.learn.spring.support.OrderProperties;
 
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Slf4j
@@ -29,6 +32,10 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
     @Autowired
     private CoffeeRepository coffeeRepository;
 
+    @Autowired
+    private OrderProperties orderProperties;
+
+    private String waiterId = UUID.randomUUID().toString();
 
     @Override
     @Transactional
@@ -37,6 +44,9 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
         CoffeeOrder order = CoffeeOrder.builder().customer(customer)
                 .items(new ArrayList<>(cofs)) // 必须再包一层, Arrays.asList生成的是不可编辑的List, 再updateOrder时, 会调用remove方法, 导致异常
                 .state(OrderState.INIT)
+                .discount(orderProperties.getDiscount())
+                .total(calcTotal(coffees))
+                .waiter(orderProperties.getWaiterPrefix() + waiterId)
                 .build();
         CoffeeOrder save = coffeeOrderRepository.save(order);
         log.info("new order : {}", save);
@@ -123,5 +133,13 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
 
     private String getJoinedOrderId(List<CoffeeOrder> list){
         return list.stream().map(o -> o.getId().toString()).collect(Collectors.joining(","));
+    }
+
+    private Money calcTotal(List<Coffee> coffees){
+        List<Money> monies = coffees.stream().map(Coffee::getPrice)
+                .collect(Collectors.toList());
+        return Money.total(monies).multipliedBy(orderProperties.getDiscount())
+                .dividedBy(100, RoundingMode.HALF_UP);
+
     }
 }

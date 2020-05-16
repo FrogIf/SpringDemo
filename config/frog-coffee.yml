@@ -1,0 +1,6 @@
+frog:
+  mark: kk
+  value: 78
+  order:
+    discount: 50
+    waiter-prefix: frog-waiter-

@@ -120,6 +120,7 @@
             <artifactId>CommonSupport</artifactId>
             <version>${frog-app.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>

@@ -103,6 +103,11 @@ spring:
       bindings:
         finishedOrders:
           group: frog-coffee
+      rabbit:
+        bindings:
+          notifyOrders:
+            producer:
+              routing-key-expression: headers.starter
   rabbitmq:
     host: 192.168.99.100
     port: 5672
@@ -180,7 +185,7 @@ resilience4j:
         subscribe-for-events: true
         register-health-indicator: true
       order:
-        limit-for-period: 5 # 每一个时间窗口下只允许5个请求
+        limit-for-period: 100 # 每一个时间窗口下只允许100个请求
         limit-refresh-period-in-millis: 30000 # 时间窗口大小ms
         timeout-in-millis: 5000
         subscribe-for-events: true

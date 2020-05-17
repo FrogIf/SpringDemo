@@ -10,7 +10,7 @@ public interface CoffeeOrderService {
 
     CoffeeOrder createOrder(String customer, List<Coffee> coffees);
 
-    boolean updateState(CoffeeOrder order, OrderState state);
+    boolean updateState(CoffeeOrder order, OrderState state, String starter);
 
     List<CoffeeOrder> findAllByCustomer(String customer);
 

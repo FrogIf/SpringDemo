@@ -8,31 +8,42 @@ import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sch.frog.learn.spring.client.integration.CoffeeOrderService;
 import sch.frog.learn.spring.client.integration.CoffeeService;
+import sch.frog.learn.spring.client.support.OrderWaitingEvent;
 import sch.frog.learn.spring.common.entity.Coffee;
 import sch.frog.learn.spring.common.entity.CoffeeOrder;
+import sch.frog.learn.spring.common.entity.OrderState;
 import sch.frog.learn.spring.common.web.request.NewOrderRequest;
+import sch.frog.learn.spring.common.web.request.OrderStateRequest;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("customer")
 @Slf4j
-public class CustomerCoffeeController {
+public class CustomerCoffeeController implements ApplicationEventPublisherAware {
 
     @Autowired
     private CoffeeService coffeeService;
 
     @Autowired
     private CoffeeOrderService coffeeOrderService;
+
+    private ApplicationEventPublisher applicationEventPublisher;
+
+    @Value("${customer.mark}")
+    private String starter;
+
 
     /*
      * 断路保护, 如果向下游请求失败, 则启动
@@ -85,7 +96,13 @@ public class CustomerCoffeeController {
     @io.github.resilience4j.bulkhead.annotation.Bulkhead(name = "order")
     public boolean pay(Long id){
         log.info("pay : {}.", id);
-        return coffeeOrderService.pay(id);
+        CoffeeOrder order = coffeeOrderService.getOrder(id);
+//        applicationEventPublisher.publishEvent(new OrderWaitingEvent(order));   // 触发事件
+        return coffeeOrderService.updateState(id, starter, new OrderStateRequest(OrderState.PAID));
     }
 
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
+    }
 }

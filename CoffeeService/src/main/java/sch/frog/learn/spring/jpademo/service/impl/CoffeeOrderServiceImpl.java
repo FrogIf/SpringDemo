@@ -5,6 +5,7 @@ import sch.frog.learn.spring.common.constant.CommonConstant;
 import sch.frog.learn.spring.common.entity.Coffee;
 import sch.frog.learn.spring.common.entity.CoffeeOrder;
 import sch.frog.learn.spring.common.entity.OrderState;
+import sch.frog.learn.spring.common.mq.model.OrderMessageBody;
 import sch.frog.learn.spring.jpademo.dao.CoffeeOrderRepository;
 import sch.frog.learn.spring.jpademo.dao.CoffeeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -59,7 +60,7 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
     }
 
     @Override
-    public boolean updateState(CoffeeOrder order, OrderState state){
+    public boolean updateState(CoffeeOrder order, OrderState state, String starter/*用来标记从哪个客户端来的, 还要返回给该客户端*/){
         if(state.compareTo(order.getState()) <= 0){
             log.warn("Wrong State order : {}, {}", state, order.getState());
             return false;
@@ -68,7 +69,7 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
         coffeeOrderRepository.save(order);
         log.info("Update Order : {}", order);
         if(state == OrderState.PAID){
-            barista.newOrder().send(MessageBuilder.withPayload(order.getId()).build());
+            barista.newOrder().send(MessageBuilder.withPayload(OrderMessageBody.builder().id(order.getId()).starter(starter).build()).build());
         }
         return true;
     }

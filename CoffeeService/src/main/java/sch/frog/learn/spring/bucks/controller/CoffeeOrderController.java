@@ -16,6 +16,7 @@ import sch.frog.learn.spring.common.entity.Coffee;
 import sch.frog.learn.spring.common.entity.CoffeeOrder;
 import sch.frog.learn.spring.common.entity.OrderState;
 import sch.frog.learn.spring.common.web.request.NewOrderRequest;
+import sch.frog.learn.spring.common.web.request.OrderStateRequest;
 import sch.frog.learn.spring.jpademo.service.CoffeeOrderService;
 import sch.frog.learn.spring.jpademo.service.CoffeeService;
 
@@ -57,7 +58,7 @@ public class CoffeeOrderController {
     public CoffeeOrder getOrder(@PathVariable("id") Long id){
         CoffeeOrder order = null;
         try{
-            order = rateLimiter.executeSupplier(() -> coffeeOrderService.get(id));  // 限流
+            order = coffeeOrderService.get(id);
             log.info("Get Order : {}", order);
         }catch (RequestNotPermitted e){
             log.warn("Request Not Permitted! {}", e.getMessage());
@@ -89,11 +90,13 @@ public class CoffeeOrderController {
         return "redirect:/order/" + newOrder.getId();
     }
 
-    @PostMapping(path = "/pay/{id}")
+    @PutMapping(path = "/{id}/{starter}")
     @ResponseBody
-    public boolean pay(@PathVariable("id") Long id){
-        CoffeeOrder coffeeOrder = coffeeOrderService.get(id);
-        log.info("pay : {}", coffeeOrder);
-        return coffeeOrderService.updateState(coffeeOrder, OrderState.PAID);
+    public boolean updateState(@PathVariable("id") Long id, @PathVariable("starter") String starter, @RequestBody OrderStateRequest orderState){
+        return rateLimiter.executeSupplier(() -> {  // 限流
+            CoffeeOrder coffeeOrder = coffeeOrderService.get(id);
+            log.info("pay : {}", coffeeOrder);
+            return rateLimiter.executeSupplier(() -> coffeeOrderService.updateState(coffeeOrder, orderState.getOrderState(), starter));  // 限流
+        });
     }
 }

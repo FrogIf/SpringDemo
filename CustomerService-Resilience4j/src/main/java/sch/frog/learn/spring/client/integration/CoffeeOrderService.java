@@ -2,12 +2,10 @@ package sch.frog.learn.spring.client.integration;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import sch.frog.learn.spring.common.entity.CoffeeOrder;
 import sch.frog.learn.spring.common.web.request.NewOrderRequest;
+import sch.frog.learn.spring.common.web.request.OrderStateRequest;
 
 @FeignClient(name = "frog-coffee", contextId = "coffeeOrder", path = "/order")
 public interface CoffeeOrderService {
@@ -18,6 +16,6 @@ public interface CoffeeOrderService {
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     CoffeeOrder getOrder(@PathVariable("id") Long id);
 
-    @PostMapping(path = "/pay/{id}")
-    boolean pay(@PathVariable("id") Long id);
+    @PutMapping(path = "/{id}/{starter}")
+    boolean updateState(@PathVariable("id") Long id, @PathVariable("starter") String starter, @RequestBody OrderStateRequest orderState);
 }

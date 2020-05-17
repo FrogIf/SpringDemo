@@ -6,4 +6,6 @@ public class MessageQueue {
 
     public final static String FINISH_ORDERS = "finishedOrders";
 
+    public final static String NOTIFY_ORDERS = "notifyOrders";
+
 }

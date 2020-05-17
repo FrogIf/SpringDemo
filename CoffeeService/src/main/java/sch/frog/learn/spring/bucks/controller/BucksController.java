@@ -31,9 +31,9 @@ public class BucksController {
 
         if(optional.isPresent()){
             CoffeeOrder order = coffeeOrderService.createOrder(customer, Collections.singletonList(optional.get()));
-            boolean success = coffeeOrderService.updateState(order, OrderState.PAID);
+            boolean success = coffeeOrderService.updateState(order, OrderState.PAID, null);
             log.info("success : {}", success);
-            success = coffeeOrderService.updateState(order, OrderState.INIT);
+            success = coffeeOrderService.updateState(order, OrderState.INIT, null);
             log.info("success : {}", success);
         }
 

@@ -10,6 +10,9 @@ feign:
         connection-timeout: 500
         read-timeout: 500
 
+customer:
+  mark: "spring-${server.port}"
+
 logging:
   level:
     sch.frog.learn.spring.client.integration.CoffeeService : debug
@@ -20,6 +23,17 @@ spring:
       port: 8500
       discovery:
         prefer-ip-address: true
+    stream:
+      rabbit:
+        bindings:
+          notifyOrders:
+            consumer:
+              binding-routing-key: ${customer.mark} # 至消费指定routing-key下的消息
+  rabbitmq:
+    host: 192.168.99.100
+    port: 5672
+    username: spring
+    password: spring
 
 management:
   endpoints:

@@ -1,12 +1,12 @@
-drop table if exists t_coffee;
-drop table if exists t_order;
-drop table if exists t_order_coffee;
-drop table if exists T_FOO;
-drop table if exists t_mcoffee;
-drop table if exists t_gcoffee;
+drop table t_coffee if exists;
+drop table t_order if exists;
+drop table t_order_coffee if exists;
+drop table T_FOO if exists;
+drop table t_mcoffee if exists;
+drop table t_gcoffee if exists;
 
 
-CREATE TABLE T_FOO (ID int primary key auto_increment, BAR VARCHAR(64));
+CREATE TABLE T_FOO (ID INT IDENTITY, BAR VARCHAR(64));
 
 create table t_coffee (
     id bigint auto_increment,
@@ -23,6 +23,10 @@ create table t_order (
     update_time timestamp,
     customer varchar(255),
     state integer not null,
+    waiter varchar(255),
+    discount integer,
+    total bigint,
+    barista varchar(255),
     primary key (id)
 );
 

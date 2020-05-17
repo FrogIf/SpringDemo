@@ -24,6 +24,7 @@
         <module>Turbine</module>
         <module>CustomerService-Resilience4j</module>
         <module>GitConfigServer</module>
+        <module>BaristaService</module>
     </modules>
 
     <properties>

@@ -21,6 +21,7 @@ import sch.frog.learn.spring.common.web.request.NewOrderRequest;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("customer")
@@ -77,6 +78,14 @@ public class CustomerCoffeeController {
     public CoffeeOrder createOrderFallBack(){
         log.warn("fall to null order.");
         return null;
+    }
+
+    @PostMapping("/pay")
+    @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker(name = "order")
+    @io.github.resilience4j.bulkhead.annotation.Bulkhead(name = "order")
+    public boolean pay(Long id){
+        log.info("pay : {}.", id);
+        return coffeeOrderService.pay(id);
     }
 
 }

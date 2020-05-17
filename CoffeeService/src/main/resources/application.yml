@@ -9,13 +9,13 @@ server:
 spring:
   datasource:
     initialization-mode: always # 使用脚本进行初始化
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://192.168.99.100/springbucks?useSSL=false&allowPublicKeyRetrieval=true
-#    username: springbucks
-#    password: springbucks
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: sa
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100/springbucks?useSSL=false&allowPublicKeyRetrieval=true
+    username: springbucks
+    password: springbucks
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password: sa
 #    password: n/z7PyA5cvcXvs8px8FVmBVpaRyNsvJb3X7YfS38DJrIg25EbZaZGvH4aHcnc97Om0islpCAPc3MqsGvsrxVJw==
     druid:
       initial-size: 5
@@ -99,6 +99,15 @@ spring:
     nacos:  #nacos 注册中心
       discovery:
         server-addr: 192.168.99.100:8848
+    stream:
+      bindings:
+        finishedOrders:
+          group: frog-coffee
+  rabbitmq:
+    host: 192.168.99.100
+    port: 5672
+    username: spring
+    password: spring
 
 # Spring boot actuator端点启用和暴露
 management:

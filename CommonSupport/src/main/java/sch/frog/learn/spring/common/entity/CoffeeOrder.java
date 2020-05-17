@@ -47,4 +47,6 @@ public class CoffeeOrder extends BaseEntity implements Serializable {
 
     private String waiter;
 
+    private String barista;
+
 }

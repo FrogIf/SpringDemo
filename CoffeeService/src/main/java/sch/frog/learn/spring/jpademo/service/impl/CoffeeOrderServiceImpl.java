@@ -1,5 +1,6 @@
 package sch.frog.learn.spring.jpademo.service.impl;
 
+import org.springframework.messaging.support.MessageBuilder;
 import sch.frog.learn.spring.common.constant.CommonConstant;
 import sch.frog.learn.spring.common.entity.Coffee;
 import sch.frog.learn.spring.common.entity.CoffeeOrder;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import sch.frog.learn.spring.jpademo.service.CoffeeOrderService;
+import sch.frog.learn.spring.mq.Barista;
 import sch.frog.learn.spring.support.OrderProperties;
 
 import java.math.RoundingMode;
@@ -36,6 +38,9 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
     private OrderProperties orderProperties;
 
     private String waiterId = UUID.randomUUID().toString();
+
+    @Autowired
+    private Barista barista;
 
     @Override
     @Transactional
@@ -62,6 +67,9 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
         order.setState(state);
         coffeeOrderRepository.save(order);
         log.info("Update Order : {}", order);
+        if(state == OrderState.PAID){
+            barista.newOrder().send(MessageBuilder.withPayload(order.getId()).build());
+        }
         return true;
     }
 

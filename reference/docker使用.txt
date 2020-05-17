@@ -49,3 +49,8 @@ docker pull nacos/nacos-server
 docker run --name nacos -d -p 8848:8848 -e MODE=standalone nacos/nacos-server
 用户名密码为:nacos
 用户界面:http://192.168.99.100:8848/nacos
+
+
+rabbitMq
+docker pull rabbitmq:3.7-management
+docker run --name rabbitmq -d -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=spring -e RABBITMQ_DEFAULT_PASS=spring rabbitmq:3.7-management

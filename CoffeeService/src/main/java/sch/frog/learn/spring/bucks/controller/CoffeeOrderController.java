@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import sch.frog.learn.spring.common.entity.Coffee;
 import sch.frog.learn.spring.common.entity.CoffeeOrder;
+import sch.frog.learn.spring.common.entity.OrderState;
 import sch.frog.learn.spring.common.web.request.NewOrderRequest;
 import sch.frog.learn.spring.jpademo.service.CoffeeOrderService;
 import sch.frog.learn.spring.jpademo.service.CoffeeService;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
@@ -84,5 +87,13 @@ public class CoffeeOrderController {
         List<Coffee> coffees = coffeeService.getCoffeeByName(order.getItems());
         CoffeeOrder newOrder = coffeeOrderService.createOrder(order.getCustomer(), coffees);
         return "redirect:/order/" + newOrder.getId();
+    }
+
+    @PostMapping(path = "/pay/{id}")
+    @ResponseBody
+    public boolean pay(@PathVariable("id") Long id){
+        CoffeeOrder coffeeOrder = coffeeOrderService.get(id);
+        log.info("pay : {}", coffeeOrder);
+        return coffeeOrderService.updateState(coffeeOrder, OrderState.PAID);
     }
 }

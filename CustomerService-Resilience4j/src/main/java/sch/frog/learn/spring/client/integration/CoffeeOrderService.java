@@ -17,4 +17,7 @@ public interface CoffeeOrderService {
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     CoffeeOrder getOrder(@PathVariable("id") Long id);
+
+    @PostMapping(path = "/pay/{id}")
+    boolean pay(@PathVariable("id") Long id);
 }

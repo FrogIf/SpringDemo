@@ -7,7 +7,9 @@ spring:
       port: 8500
       discovery:
         prefer-ip-address: true
-    config:
-      discovery:
-        enabled: true
-        service-id: git-config-server
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: git-config-server
+    zookeeper:
+      connect-string: 192.168.99.100:2181

@@ -2,14 +2,22 @@ spring:
   application:
     name: frog-coffee
   cloud:
+    nacos:
+      config:
+        server-addr: 192.168.99.100
+        enabled: true
+        file-extension: yaml
     consul:
       host: 192.168.99.100
       port: 8500
       discovery:
         prefer-ip-address: true
+#      config:
+#        enabled: true
+#        format: yaml
 #    config:
 #      discovery:
 #        enabled: true
 #        service-id: git-config-server
-    zookeeper:
-      connect-string: 192.168.99.100:2181
+#    zookeeper:
+#      connect-string: 192.168.99.100:2181

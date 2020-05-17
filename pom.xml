@@ -23,7 +23,6 @@
         <module>HystrixDashboard</module>
         <module>Turbine</module>
         <module>CustomerService-Resilience4j</module>
-        <module>ConfigServer</module>
         <module>GitConfigServer</module>
     </modules>
 
@@ -33,7 +32,7 @@
         <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <frog-app.version>1.0-SNAPSHOT</frog-app.version>
-        <spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>0.9.0.RELEASE</spring-cloud-alibaba.version>
     </properties>
 
     <build>

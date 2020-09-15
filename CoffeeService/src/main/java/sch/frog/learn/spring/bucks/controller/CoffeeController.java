@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import sch.frog.learn.spring.bucks.remote.barista.BaristaService;
 import sch.frog.learn.spring.common.entity.Coffee;
 import sch.frog.learn.spring.common.web.exception.FormValidationException;
 import sch.frog.learn.spring.common.web.request.NewCoffeeRequest;
@@ -33,6 +34,9 @@ public class CoffeeController {
 
     @Autowired
     private CoffeeService coffeeService;
+
+    @Autowired
+    private BaristaService baristaService;
 
     @GetMapping(path = "/", params = "!name")
     @ResponseBody
@@ -118,6 +122,12 @@ public class CoffeeController {
 
         // TODO save to database
         return coffees;
+    }
+
+    @RequestMapping("/touch")
+    @ResponseBody
+    public String touch(){
+        return baristaService.touch();
     }
 
 }

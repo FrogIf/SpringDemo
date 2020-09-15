@@ -18,15 +18,15 @@ logging:
 spring:
   cloud:
     zookeeper:  # zookeeper注册中心
-      connect-string: 192.168.99.100:2181
+      connect-string: 127.0.0.1:2181
     consul: # consul注册中心
-      host: 192.168.99.100
+      host: 127.0.0.1
       port: 8500
       discovery:
         prefer-ip-address: true
     nacos: # nacos注册中心
       discovery:
-        server-addr: 192.168.99.100:8848
+        server-addr: 127.0.0.1:8848
 
 frog:
   discovery:

@@ -10,7 +10,7 @@ spring:
   datasource:
     initialization-mode: always # 使用脚本进行初始化
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.99.100/springbucks?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1/springbucks?useSSL=false&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=CONVERT_TO_NULL
     username: springbucks
     password: springbucks
 #    url: jdbc:h2:mem:testdb
@@ -48,7 +48,7 @@ spring:
         format_sql: true
   data:
     mongodb:
-      uri: mongodb://springbucks:springbucks@192.168.99.100:27017/springbucks
+      uri: mongodb://springbucks:springbucks@127.0.0.1:27017/springbucks
   cache:
     type: redis
     cache-names: coffee
@@ -56,7 +56,7 @@ spring:
       time-to-live: 5000
       cache-null-values: false
   redis:
-    host: 192.168.99.100
+    host: 127.0.0.1
     port: 6379
     lettuce:
       pool:
@@ -77,28 +77,28 @@ spring:
     user:
       name: frog
       password: 123456
-  boot:
-    admin:
-      client:
-        url: http://localhost:8081
-        username: frog
-        password: 123456
-        instance:
-          metadata:
-            user:
-              name: ${spring.security.user.name}
-              password: ${spring.security.user.password}
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8081
+#        username: frog
+#        password: 123456
+#        instance:
+#          metadata:
+#            user:
+#              name: ${spring.security.user.name}
+#              password: ${spring.security.user.password}
   cloud:
-    zookeeper:   # zookeeper注册中心
-      connect-string: 192.168.99.100:2181
+#    zookeeper:   # zookeeper注册中心
+#      connect-string: 127.0.0.1:2181
     consul:   # consul注册中心
-      host: 192.168.99.100
+      host: 127.0.0.1
       port: 8500
       discovery:
         prefer-ip-address: true
-    nacos:  #nacos 注册中心
-      discovery:
-        server-addr: 192.168.99.100:8848
+#    nacos:  #nacos 注册中心
+#      discovery:
+#        server-addr: 127.0.0.1:8848
     stream:
       bindings:
         finishedOrders:
@@ -109,7 +109,7 @@ spring:
             producer:
               routing-key-expression: headers.starter
   rabbitmq:
-    host: 192.168.99.100
+    host: 127.0.0.1
     port: 5672
     username: spring
     password: spring
@@ -153,7 +153,7 @@ pagehelper:
 
 
 redis:
-  host: 192.168.99.100
+  host: 127.0.0.1
   maxTotal: 5
   maxIdle: 5
   testOnBorrow : true

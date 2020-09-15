@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8093
 
 spring:
   output:
@@ -8,7 +8,7 @@ spring:
   datasource:
     initialization-mode: always # 使用脚本进行初始化
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.99.100/springbucks?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1/springbucks?useSSL=false&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=CONVERT_TO_NULL
     username: springbucks
     password: springbucks
   jpa:
@@ -19,7 +19,7 @@ spring:
         show_sql: true
         format_sql: true
   rabbitmq:
-    host: 192.168.99.100
+    host: 127.0.0.1
     port: 5672
     username: spring
     password: spring

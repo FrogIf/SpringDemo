@@ -4,11 +4,11 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 192.168.99.100
+        server-addr: 127.0.0.1
         enabled: true
         file-extension: yaml
     consul:
-      host: 192.168.99.100
+      host: 127.0.0.1
       port: 8500
       discovery:
         prefer-ip-address: true
@@ -20,4 +20,4 @@ spring:
 #        enabled: true
 #        service-id: git-config-server
 #    zookeeper:
-#      connect-string: 192.168.99.100:2181
+#      connect-string: 127.0.0.1:2181

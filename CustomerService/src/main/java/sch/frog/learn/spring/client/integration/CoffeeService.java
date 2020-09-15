@@ -12,4 +12,7 @@ import java.util.List;
 public interface CoffeeService {
     @RequestMapping(path = "/", params = "!name", method = RequestMethod.GET)
     List<Coffee> findAll();
+
+    @RequestMapping(path = "/touch")
+    String touch();
 }

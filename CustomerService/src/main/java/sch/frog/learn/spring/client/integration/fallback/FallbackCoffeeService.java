@@ -16,4 +16,10 @@ public class FallbackCoffeeService implements CoffeeService {
         log.warn("fallback to empty list.");
         return Collections.emptyList();
     }
+
+    @Override
+    public String touch() {
+        log.warn("fallback to touch.");
+        return "fail";
+    }
 }

@@ -48,6 +48,11 @@ public class CustomerCoffeeController {
         return coffeeOrder;
     }
 
+    @RequestMapping("/touch")
+    public String touch(){
+        return coffeeService.touch();
+    }
+
     public CoffeeOrder createOrderFallBack(){
         log.warn("fall to null order.");
         return null;
